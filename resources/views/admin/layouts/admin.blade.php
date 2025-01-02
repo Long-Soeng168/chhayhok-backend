@@ -391,10 +391,10 @@
                             class="{{ request()->is('admin/books*') ? 'bg-slate-200 dark:bg-slate-500' : '' }}">
                             <img src="{{ asset('assets/icons/books.png') }}" alt="icon"
                                 class="object-contain w-8 h-8 p-0.5 bg-white dark:bg-gray-200 rounded">
-                            <span class="ml-3">Books</span>
+                            <span class="ml-3">Products</span>
                         </x-sidebar-item>
                     </li>
-                    <li class="mt-2">
+                    {{-- <li class="mt-2">
                         <x-sidebar-item href="{{ url('admin/people/authors') }}"
                             class="{{ request()->is('admin/people/authors*') ? 'bg-slate-200 dark:bg-slate-500' : '' }}">
                             <img src="{{ asset('assets/icons/author.png') }}" alt="icon"
@@ -409,27 +409,27 @@
                                 class="object-contain w-8 h-8 p-0.5 bg-white dark:bg-gray-200 rounded">
                             <span class="ml-3">Publishers</span>
                         </x-sidebar-item>
-                    </li>
-                    <li class="mt-2">
+                    </li> --}}
+                    {{-- <li class="mt-2">
                         <x-sidebar-item href="{{ url('admin/promotions') }}"
                             class="{{ request()->is('admin/promotions*') ? 'bg-slate-200 dark:bg-slate-500' : '' }}">
                             <img src="{{ asset('assets/icons/promotions.png') }}" alt="icon"
                                 class="object-contain w-8 h-8 p-0.5 bg-white dark:bg-gray-200 rounded">
                             <span class="ml-3">Promotions</span>
                         </x-sidebar-item>
-                    </li>
+                    </li> --}}
 
                     @if (request()->user()->hasRole(['super-admin', 'admin']))
                         <li x-data="{
-                            open: {{ request()->is('admin/categories*') || request()->is('admin/sub_categories*') ? 'true' : 'false' }},
+                            open: {{ request()->is('admin/categories*') || request()->is('admin/books*') || request()->is('admin/sub_categories*') ? 'true' : 'false' }},
                             init() {
-                                if ({{ request()->is('admin/categories*') || request()->is('admin/sub_categories*') ? 'true' : 'false' }}) {
+                                if ({{ request()->is('admin/categories*') || request()->is('admin/books*') || request()->is('admin/sub_categories*') ? 'true' : 'false' }}) {
                                     this.$nextTick(() => this.$refs.users.scrollIntoView({ behavior: 'smooth' }));
                                 }
                             }
                         }" x-ref="users" class="pt-1">
                             <button type="button"
-                                class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ request()->is('admin/categories*') || request()->is('admin/sub_categories*') ? 'bg-slate-200 dark:bg-slate-500' : '' }}"
+                                class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ request()->is('admin/categories*') || request()->is('admin/books*') || request()->is('admin/sub_categories*') ? 'bg-slate-200 dark:bg-slate-500' : '' }}"
                                 :class="{ 'bg-slate-100 dark:bg-slate-700': open }"
                                 @click="open = !open; if (open) $nextTick(() => $refs.users.scrollIntoView({ behavior: 'smooth' }))">
                                 <img src="{{ asset('assets/icons/book_categories.png') }}" alt="icon"
@@ -443,6 +443,18 @@
                                 </svg>
                             </button>
                             <ul x-show="open" x-transition class="py-2 ml-2 space-y-2">
+                                <li>
+                                    <a href="{{ url('admin/books') }}"
+                                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ request()->is('admin/books*') ? 'bg-slate-200 dark:bg-slate-500' : '' }}">
+                                        Products
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ url('admin/brands') }}"
+                                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ request()->is('admin/brands*') ? 'bg-slate-200 dark:bg-slate-500' : '' }}">
+                                        Brands
+                                    </a>
+                                </li>
                                 <li>
                                     <a href="{{ url('admin/categories') }}"
                                         class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ request()->is('admin/categories*') ? 'bg-slate-200 dark:bg-slate-500' : '' }}">
@@ -603,12 +615,12 @@
                                         Links
                                     </a>
                                 </li>
-                                <li>
+                                {{-- <li>
                                     <a href="{{ url('admin/settings/features') }}"
                                         class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ request()->is('admin/settings/features*') ? 'bg-slate-200 dark:bg-slate-500' : '' }}">
                                         Features
                                     </a>
-                                </li>
+                                </li> --}}
                                 <li>
                                     <a href="{{ url('admin/settings/footer/1/edit') }}"
                                         class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ request()->is('admin/settings/footer*') ? 'bg-slate-200 dark:bg-slate-500' : '' }}">
@@ -680,7 +692,7 @@
                     Account Settings
                     <div class="tooltip-arrow" data-popper-arrow></div>
                 </div>
-                <button type="button" data-dropdown-toggle="language-dropdown"
+                {{-- <button type="button" data-dropdown-toggle="language-dropdown"
                     class="inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer dark:hover:text-white dark:text-gray-400 hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-600">
                     @if (app()->getLocale() == 'kh')
                         <img src="{{ asset('assets/icons/khmer.png') }}" alt="icon"
@@ -718,7 +730,7 @@
                             </a>
                         </li>
                     </ul>
-                </div>
+                </div> --}}
             </div>
         </aside>
 

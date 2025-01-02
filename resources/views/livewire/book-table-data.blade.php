@@ -92,7 +92,7 @@
                     <path clip-rule="evenodd" fill-rule="evenodd"
                         d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
                 </svg>
-                Add Book
+                Add Product
             </x-primary-button>
 
             {{-- <div class="flex items-center w-full space-x-3 md:w-auto">
@@ -148,14 +148,14 @@
                         <th scope="row"
                             class="flex items-center px-4 py-2 font-medium text-gray-900 dark:text-white">
                             <a href="{{ asset('assets/images/isbn/' . $item->image) }}" class="glightbox">
-                                <img src="{{ asset('assets/images/isbn/' . $item->image) }}"
-                                    alt="iMac Front Image" class="object-contain h-10 mr-3 aspect-[16/9]">
+                                <img src="{{ asset('assets/images/isbn/' . $item->image) }}" alt="iMac Front Image"
+                                    class="object-contain h-10 mr-3 aspect-[16/9]">
                             </a>
                         </th>
                         <x-table-data value="{{ $item->title }}" />
-                        <x-table-data value="$ {{ $item->price }}" class="text-red-400"/>
-                        <x-table-data value="{{ $item->isbn}}" />
-                        <x-table-data class="text-center" value="{{ $item->publisher?->name}}" />
+                        <x-table-data value="$ {{ $item->price }}" class="text-red-400" />
+                        <x-table-data value="{{ $item->isbn }}" />
+                        <x-table-data class="text-center" value="{{ $item->publisher?->name }}" />
                         <td class="text-center">
                             @if ($item->status == 1)
                                 <span class="w-4 px-4 py-3 font-semibold text-green-700">
@@ -177,8 +177,59 @@
 
                                 <div class="pb-1" x-data="{ tooltip: false }">
                                     <!-- Modal toggle -->
-                                    <a href="{{ url('/admin/books/'.$item->id) }}"
-                                        @mouseenter="tooltip = true" @mouseleave="tooltip = false">
+                                    <a href="{{ url('admin/book_images/' . $item->id) }}"
+                                        @mouseenter="tooltip = true" @mouseleave="tooltip = false" class="relative">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-plus-circle">
+                                            <circle cx="12" cy="12" r="10" />
+                                            <path d="M8 12h8" />
+                                            <path d="M12 8v8" />
+                                        </svg>
+                                        <!-- View tooltip -->
+                                        <div x-show="tooltip" x-transition:enter="transition ease-out duration-200"
+                                            x-transition:enter-start="opacity-0 transform scale-90"
+                                            x-transition:enter-end="opacity-100 transform scale-100"
+                                            x-transition:leave="transition ease-in duration-75"
+                                            x-transition:leave-start="opacity-100 transform scale-100"
+                                            x-transition:leave-end="opacity-0 transform scale-90"
+                                            class="absolute z-10 inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm dark:bg-gray-700 whitespace-nowrap"
+                                            style="display: none;">
+                                            Add Image
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="pb-1" x-data="{ tooltip: false }">
+                                    <!-- Modal toggle -->
+                                    <a href="{{ url('admin/book_videos/' . $item->id) }}"
+                                        @mouseenter="tooltip = true" @mouseleave="tooltip = false" class="relative">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-plus-circle">
+                                            <circle cx="12" cy="12" r="10" />
+                                            <path d="M8 12h8" />
+                                            <path d="M12 8v8" />
+                                        </svg>
+                                        <!-- View tooltip -->
+                                        <div x-show="tooltip" x-transition:enter="transition ease-out duration-200"
+                                            x-transition:enter-start="opacity-0 transform scale-90"
+                                            x-transition:enter-end="opacity-100 transform scale-100"
+                                            x-transition:leave="transition ease-in duration-75"
+                                            x-transition:leave-start="opacity-100 transform scale-100"
+                                            x-transition:leave-end="opacity-0 transform scale-90"
+                                            class="absolute z-10 inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm dark:bg-gray-700 whitespace-nowrap"
+                                            style="display: none;">
+                                            Add Video
+                                        </div>
+                                    </a>
+                                </div>
+
+                                {{-- <div class="pb-1" x-data="{ tooltip: false }">
+                                    <!-- Modal toggle -->
+                                    <a href="{{ url('/admin/books/' . $item->id) }}" @mouseenter="tooltip = true"
+                                        @mouseleave="tooltip = false">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -194,7 +245,7 @@
                                         style="display: none;">
                                         View
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 <div class="pb-1" x-data="{ tooltip: false }">
                                     <!-- Modal toggle -->

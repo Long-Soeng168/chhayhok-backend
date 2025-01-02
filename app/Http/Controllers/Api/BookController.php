@@ -17,6 +17,7 @@ class BookController extends Controller
         $perPage = $request->perPage ?? 12;
         $search = $request->search;
         $categoryId = $request->categoryId;
+        $brandId = $request->brandId;
         $priceFrom = $request->priceFrom;
         $priceTo = $request->priceTo;
         $yearFrom = $request->yearFrom;
@@ -41,6 +42,10 @@ class BookController extends Controller
 
         if ($categoryId) {
             $query->where('category_id', $categoryId);
+        }
+
+        if($brandId) {
+            $query->where('brand_id', $brandId);
         }
 
         if ($subCategoryId) {
@@ -231,7 +236,7 @@ class BookController extends Controller
      */
     public function show(string $id)
     {
-        $book =  Book::with('images', 'author', 'publisher', 'category', 'subCategory')->findOrFail($id);
+        $book =  Book::with('images', 'videos', 'category', 'subCategory')->findOrFail($id);
         return response()->json($book);
     }
 

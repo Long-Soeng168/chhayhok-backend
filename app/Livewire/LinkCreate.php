@@ -22,6 +22,7 @@ class LinkCreate extends Component
     public $order_index = 0;
     public $description = null;
     public $description_kh = null;
+    public $link_in_product_detail = 0;
 
     public function updatedImage()
     {
@@ -52,10 +53,11 @@ class LinkCreate extends Component
         $this->dispatch('livewire:updated');
         $validated = $this->validate([
             'name' => 'required|string|max:255',
-            'name_kh' => 'required|string|max:255',
+            'name_kh' => 'nullable|string|max:255',
             'image' => 'required|file|max:2048',
             'link' => 'required|url|max:255',
             'order_index' => 'nullable',
+            'link_in_product_detail' => 'nullable',
         ]);
 
         // $validated['create_by_user_id'] = request()->user()->id;

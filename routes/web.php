@@ -111,7 +111,10 @@ Route::group([
 ], function () {
     Route::resource('isbn_requests', IsbnRequestController::class);
     Route::resource('admin/books', BookController::class);
+    Route::get('admin/book_images/{id}', [BookController::class, 'images']);
+    Route::get('admin/book_videos/{id}', [BookController::class, 'videos']);
      Route::resource('admin/orders', OrderController::class );
+    Route::get('admin/brands', [BookController::class, 'brands']);
     Route::get('admin/categories', [BookController::class, 'categories']);
     Route::get('admin/sub_categories', [BookController::class, 'sub_categories']);
 

@@ -21,6 +21,7 @@ class LinkEdit extends Component
     public $order_index;
     public $description;
     public $description_kh;
+    public $link_in_product_detail;
 
     public function mount(Link $item)
     {
@@ -29,6 +30,7 @@ class LinkEdit extends Component
         $this->name_kh = $item->name_kh;
         $this->link = $item->link;
         $this->order_index = $item->order_index;
+        $this->link_in_product_detail = $item->link_in_product_detail;
     }
 
     public function updatedImage()
@@ -47,6 +49,7 @@ class LinkEdit extends Component
             'name_kh' => 'nullable|string|max:255',
             'link' => 'required|url|max:255',
             'order_index' => 'nullable',
+            'link_in_product_detail' => 'nullable',
         ]);
 
         // Update the existing item record

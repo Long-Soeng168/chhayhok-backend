@@ -37,4 +37,9 @@ class Book extends Model
     {
         return $this->hasMany(BookImage::class, 'book_id', 'id');
     }
+
+    public function videos()
+    {
+        return $this->hasMany(BookVideo::class, 'book_id', 'id');
+    }
 }

@@ -9,7 +9,7 @@ use App\Models\BookCategory;
 use App\Models\Author;
 use App\Models\Publisher;
 use App\Models\BookSubCategory;
-
+use App\Models\Brand;
 use Image;
 
 class BookCreate extends Component
@@ -38,6 +38,8 @@ class BookCreate extends Component
     public $language = 'khmer';
 
     public $category_id = null;
+    public $brand_id = null;
+    public $shipping = 0;
     public $sub_category_id = null;
 
     public function updatedCategory_id()
@@ -131,6 +133,7 @@ class BookCreate extends Component
             'author_id' => 'nullable',
             'publisher_id' => 'nullable',
             'category_id' => 'nullable',
+            'brand_id' => 'nullable',
             'sub_category_id' => 'nullable',
         ]);
 
@@ -185,12 +188,14 @@ class BookCreate extends Component
         // dd($allKeywords);
         // dump($this->selectedallKeywords);
         $categories = BookCategory::orderBy('name')->get();
+        $brands = Brand::orderBy('name')->get();
         $subCategories = BookSubCategory::where('category_id', $this->category_id)->orderBy('name')->get();
         $authorss = Author::orderBy('name')->get();
         $publishers = Publisher::orderBy('name')->get();
 
         return view('livewire.book-create', [
             'categories' => $categories,
+            'brands' => $brands,
             'subCategories' => $subCategories,
             'authorss' => $authorss,
             'publishers' => $publishers,

@@ -2,9 +2,9 @@
 
 @section('content')
     <div class="p-4">
-        <x-form-header :value="__('Add Images')" class="p-4" />
+        <x-form-header :value="__('Add Videos')" class="p-4" />
 
-        @livewire('book-image', [
+        @livewire('book-video', [
             'item' => $item,
         ])
 
