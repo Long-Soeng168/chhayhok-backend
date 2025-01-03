@@ -163,6 +163,7 @@ class BookEdit extends Component
             'publisher_id' => 'nullable',
             'category_id' => 'nullable',
             'sub_category_id' => 'nullable',
+            'brand_id' => 'nullable',
         ]);
 
         // dd($validated);
