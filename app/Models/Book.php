@@ -27,6 +27,10 @@ class Book extends Model
     {
         return $this->belongsTo(BookCategory::class, 'category_id', 'id');
     }
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class, 'brand_id', 'id');
+    }
 
     public function subCategory()
     {

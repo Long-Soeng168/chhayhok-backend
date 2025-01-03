@@ -132,9 +132,8 @@
                         </div>
                     </th>
                     <th scope="col" class="px-4 py-3">Price</th>
-                    <th scope="col" class="px-4 py-3 text-center">ISBN</th>
-                    <th scope="col" class="px-4 py-3">Publisher</th>
-                    <th scope="col" class="px-4 py-3 text-center">Status</th>
+                    <th scope="col" class="px-4 py-3 text-center">Category</th>
+                    <th scope="col" class="px-4 py-3">Brand</th>
                     <th scope="col" class="py-3 text-center">Action</th>
                 </tr>
             </thead>
@@ -154,9 +153,9 @@
                         </th>
                         <x-table-data value="{{ $item->title }}" />
                         <x-table-data value="$ {{ $item->price }}" class="text-red-400" />
-                        <x-table-data value="{{ $item->isbn }}" />
-                        <x-table-data class="text-center" value="{{ $item->publisher?->name }}" />
-                        <td class="text-center">
+                        <x-table-data value="{{ $item->category?->name }}" />
+                        <x-table-data class="text-center" value="{{ $item->brand?->name }}" />
+                        {{-- <td class="text-center">
                             @if ($item->status == 1)
                                 <span class="w-4 px-4 py-3 font-semibold text-green-700">
                                     Public
@@ -167,10 +166,10 @@
                                 </span>
                             @else
                                 <span class="w-4 px-4 py-3 font-semibold text-red-700">
-                                    {{-- Delete --}}
+                                    Delete
                                 </span>
                             @endif
-                        </td>
+                        </td> --}}
 
                         <td class="px-6 py-4">
                             <div class="flex items-start justify-center gap-3">
