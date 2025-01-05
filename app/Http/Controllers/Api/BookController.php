@@ -236,7 +236,7 @@ class BookController extends Controller
      */
     public function show(string $id)
     {
-        $book =  Book::with('images', 'videos', 'category', 'subCategory')->findOrFail($id);
+        $book =  Book::with('images', 'videos', 'brand', 'category', 'subCategory')->findOrFail($id);
         return response()->json($book);
     }
 
