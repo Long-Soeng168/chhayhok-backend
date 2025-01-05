@@ -172,7 +172,7 @@
 
                     <div class="col-span-2 mb-5" wire:ignore>
                         <x-input-label for="description" :value="__('Description')" />
-                        <textarea id="description" name="description"></textarea>
+                        <textarea id="description" name="description">{{ $description }}</textarea>
                     </div>
 
                     {{-- Start Image Upload --}}
