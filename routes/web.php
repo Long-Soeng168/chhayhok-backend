@@ -34,6 +34,25 @@ use App\Http\Controllers\Admin\OrderController;
 |--------------------------------------------------------------------------
 */
 
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\MyTelegramBotNotification;
+use Illuminate\Http\Request;
+
+Route::get('/sent_to_telegram', function (Request $request) {
+    $product_id = $request->product_id;
+    $phone = $request->phone;
+    try {
+        Notification::route('telegram', config('services.telegram_chat_id'))
+            ->notify(new MyTelegramBotNotification($phone, $product_id));
+    } catch (\Exception $e) {
+        // // Log::error('Notification failed: ' . $e->getMessage());
+        // return 'Error Sent notification to telegram';
+        return response()->json(['message' => 'unsuccess', 'error' => 'Error Sent notification to telegram'], 500);
+    }
+    return response()->json(['message' => 'success'], 200);
+});
+
+
 // Route::get('/fetch_book_cover', [HomeController::class, 'fetchAndSaveBookCover']);
 
 Route::get('/expired', function () {
@@ -59,7 +78,7 @@ Route::group([
     'middleware' => 'check_user_status',
     'prefix' => 'admin',
     'as' => 'admin.'
-], function() {
+], function () {
 
 
 
@@ -75,18 +94,18 @@ Route::group([
     Route::resource('roles', AdminRoleController::class);
     Route::get('roles/{id}/give-permissions', [AdminRoleController::class, 'givePermissionsToRole']);
     Route::put('roles/{id}/give-permissions', [AdminRoleController::class, 'updatePermissionsToRole']);
-    Route::resource('users', AdminUserController::class );
+    Route::resource('users', AdminUserController::class);
     Route::put('users/{user}/update_password', [AdminUserController::class, 'updateUserPassword']);
 
-    Route::resource('settings/menus', MenuController::class );
-    Route::resource('settings/slides', SlideController::class );
-    Route::resource('settings/footer', FooterController::class );
-    Route::get('settings/contact', [MenuController::class, 'contact'] );
-    Route::get('settings/about', [MenuController::class, 'about'] );
-    Route::resource('settings/features', FeatureController::class );
-    Route::resource('settings/links', LinkController::class );
-    Route::resource('settings/databases', DatabaseController::class );
-    Route::resource('settings/website_infos', WebsiteInfoController::class );
+    Route::resource('settings/menus', MenuController::class);
+    Route::resource('settings/slides', SlideController::class);
+    Route::resource('settings/footer', FooterController::class);
+    Route::get('settings/contact', [MenuController::class, 'contact']);
+    Route::get('settings/about', [MenuController::class, 'about']);
+    Route::resource('settings/features', FeatureController::class);
+    Route::resource('settings/links', LinkController::class);
+    Route::resource('settings/databases', DatabaseController::class);
+    Route::resource('settings/website_infos', WebsiteInfoController::class);
 });
 /*
 |--------------------------------------------------------------------------
@@ -99,7 +118,7 @@ Route::group([
 | Start Client Routes
 |--------------------------------------------------------------------------
 */
-Route::get('/switch-language/{locale}', function($locale){
+Route::get('/switch-language/{locale}', function ($locale) {
     session(['locale' => $locale]);
     return redirect()->back();
 })->name('switch-language');
@@ -113,7 +132,7 @@ Route::group([
     Route::resource('admin/books', BookController::class);
     Route::get('admin/book_images/{id}', [BookController::class, 'images']);
     Route::get('admin/book_videos/{id}', [BookController::class, 'videos']);
-     Route::resource('admin/orders', OrderController::class );
+    Route::resource('admin/orders', OrderController::class);
     Route::get('admin/brands', [BookController::class, 'brands']);
     Route::get('admin/categories', [BookController::class, 'categories']);
     Route::get('admin/sub_categories', [BookController::class, 'sub_categories']);
@@ -129,7 +148,6 @@ Route::group([
         // return redirect('/isbn_requests');
         return redirect('admin/books');
     });
-
 });
 
 
@@ -158,7 +176,7 @@ Route::group([
 */
 Route::group([
     'middleware' => 'role:super-admin|admin'
-], function() {
+], function () {
     Route::resource('permissions', PermissionController::class);
     Route::get('permissions/{id}/delete', [PermissionController::class, 'destroy']);
 
@@ -172,15 +190,15 @@ Route::group([
     Route::get('users/{user}/delete', [UserController::class, 'destroy']);
 });
 
-Route::get('ckeditor4-demo', function() {
+Route::get('ckeditor4-demo', function () {
     return view('ckeditor-demo.ckeditor4-demo');
 })->name('ckeditor4');
 
-Route::get('ckeditor5-demo', function() {
+Route::get('ckeditor5-demo', function () {
     return view('ckeditor-demo.ckeditor5-demo');
 })->name('ckeditor5');
 
-Route::get('slide-infinite-loop', function() {
+Route::get('slide-infinite-loop', function () {
     return view('slide-show.slide-infinite-loop');
 })->name('slide-infinite-loop');
 

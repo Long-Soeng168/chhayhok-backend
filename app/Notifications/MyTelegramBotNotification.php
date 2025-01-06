@@ -2,25 +2,26 @@
 
 namespace App\Notifications;
 
+use App\Models\Book;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Notification;
-use NotificationChannels\Telegram\TelegramMessage;
+use NotificationChannels\Telegram\TelegramFile;
 
-class MyTelegramBotNotification extends Notification implements ShouldQueue
+class MyTelegramBotNotification extends Notification
 {
     use Queueable;
 
-    protected $order;
+    public $phone;
+    public $product_id;
 
     /**
      * Create a new notification instance.
-     *
-     * @param  mixed  $order
      */
-    public function __construct($order)
+    public function __construct($phone, $product_id)
     {
-        $this->order = $order;
+        $this->phone = $phone;
+        $this->product_id = $product_id;
     }
 
     /**
@@ -28,30 +29,27 @@ class MyTelegramBotNotification extends Notification implements ShouldQueue
      *
      * @return array<int, string>
      */
-    public function via($notifiable)
+    public function via(object $notifiable): array
     {
         return ['telegram'];
     }
 
     /**
      * Get the Telegram representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return \NotificationChannels\Telegram\TelegramMessage
      */
-    public function toTelegram($notifiable)
+    public function toTelegram(object $notifiable)
     {
-        $url = url('/admin/orders/' . $this->order->id); // Link to the order details
+        $product = Book::findOrFail($this->product_id);
+        $imageUrl = env('APP_URL') . '/assets/images/isbn/thumb/' . $product->image;
+        // dd($imageUrl);
 
-        return TelegramMessage::create()
+        return TelegramFile::create()
             ->content(
-                "*🎉 New Order Received!*\n\n" .
-                "👤 *Name:* {$this->order->name}\n" .
-                "📞 *Phone:* {$this->order->phone}\n" .
-                "📝 *Note:* {$this->order->note}\n" .
-                "💰 *Total Price:* \${$this->order->total}\n"
+                "*Product* : {$product->title} \n" .
+                    "*🎉 New Order Received!*\n" .
+                    "📞 *Phone:* {$this->phone}\n"
             )
-            ->button('View Order', $url);
+            ->file($imageUrl, 'photo'); // Send the image as a photo
     }
 
     /**
@@ -59,14 +57,10 @@ class MyTelegramBotNotification extends Notification implements ShouldQueue
      *
      * @return array<string, mixed>
      */
-    public function toArray($notifiable)
+    public function toArray(object $notifiable): array
     {
         return [
-            'order_id' => $this->order->id,
-            'name' => $this->order->name,
-            'phone' => $this->order->phone,
-            'total' => $this->order->total,
-            'note' => $this->order->note,
+            //
         ];
     }
 }
