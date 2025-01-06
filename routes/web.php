@@ -34,23 +34,7 @@ use App\Http\Controllers\Admin\OrderController;
 |--------------------------------------------------------------------------
 */
 
-use Illuminate\Support\Facades\Notification;
-use App\Notifications\MyTelegramBotNotification;
-use Illuminate\Http\Request;
 
-Route::get('/sent_to_telegram', function (Request $request) {
-    $product_id = $request->product_id;
-    $phone = $request->phone;
-    try {
-        Notification::route('telegram', config('services.telegram_chat_id'))
-            ->notify(new MyTelegramBotNotification($phone, $product_id));
-    } catch (\Exception $e) {
-        // // Log::error('Notification failed: ' . $e->getMessage());
-        // return 'Error Sent notification to telegram';
-        return response()->json(['message' => 'unsuccess', 'error' => 'Error Sent notification to telegram'], 500);
-    }
-    return response()->json(['message' => 'success'], 200);
-});
 
 
 // Route::get('/fetch_book_cover', [HomeController::class, 'fetchAndSaveBookCover']);

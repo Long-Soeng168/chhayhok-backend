@@ -44,6 +44,23 @@ Route::group([
 ], function () {
 });
 
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\MyTelegramBotNotification;
+
+Route::get('/sent_to_telegram', function (Request $request) {
+    $product_id = $request->product_id;
+    $phone = $request->phone;
+    try {
+        Notification::route('telegram', config('services.telegram_chat_id'))
+            ->notify(new MyTelegramBotNotification($phone, $product_id));
+    } catch (\Exception $e) {
+        // // Log::error('Notification failed: ' . $e->getMessage());
+        // return 'Error Sent notification to telegram';
+        return response()->json(['message' => 'unsuccess', 'error' => 'Error Sent notification to telegram'], 500);
+    }
+    return response()->json(['message' => 'success'], 200);
+});
+
 
 Route::get('slides', [SlideController::class, 'index']);
 Route::get('publishers', [PublisherController::class, 'publishers']);
