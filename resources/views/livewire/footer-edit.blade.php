@@ -186,10 +186,10 @@
             <x-input-label for="description" :value="__('Description')" />
             <textarea id="description" name="description" wire:model="description"></textarea>
         </div>
-        <div class="mb-5" wire:ignore>
+        {{-- <div class="mb-5" wire:ignore>
             <x-input-label for="description_kh" :value="__('Description KH')" />
             <textarea id="description_kh" name="description_kh" wire:model="description_kh"></textarea>
-        </div>
+        </div> --}}
 
         <div>
             @can('update setting')
