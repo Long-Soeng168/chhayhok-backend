@@ -358,7 +358,8 @@
         <aside
             class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full bg-white border-r border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700 "
             aria-label="Sidenav" id="drawer-navigation">
-            <a href="{{ url('/') }}" class="flex items-center justify-center p-3.5 border-b dark:border-b-slate-600">
+            <a href="{{ url('/') }}"
+                class="flex items-center justify-center p-3.5 border-b dark:border-b-slate-600">
                 @if ($websiteInfo->image)
                     <img src="{{ asset('assets/images/website_infos/logo192.png') }}"
                         class="object-cover h-8 mr-3 rounded-full aspect-square" alt="Flowbite Logo" />
@@ -386,14 +387,14 @@
                             <span class="ml-3">ISBN Requests</span>
                         </x-sidebar-item>
                     </li> --}}
-                    <li class="mt-2">
+                    {{-- <li class="mt-2">
                         <x-sidebar-item href="{{ url('admin/books') }}"
                             class="{{ request()->is('admin/books*') ? 'bg-slate-200 dark:bg-slate-500' : '' }}">
                             <img src="{{ asset('assets/icons/books.png') }}" alt="icon"
                                 class="object-contain w-8 h-8 p-0.5 bg-white dark:bg-gray-200 rounded">
                             <span class="ml-3">Products</span>
                         </x-sidebar-item>
-                    </li>
+                    </li> --}}
                     {{-- <li class="mt-2">
                         <x-sidebar-item href="{{ url('admin/people/authors') }}"
                             class="{{ request()->is('admin/people/authors*') ? 'bg-slate-200 dark:bg-slate-500' : '' }}">
@@ -421,20 +422,20 @@
 
                     @if (request()->user()->hasRole(['super-admin', 'admin']))
                         <li x-data="{
-                            open: {{ request()->is('admin/categories*') || request()->is('admin/books*') || request()->is('admin/sub_categories*') ? 'true' : 'false' }},
+                            open: {{ request()->is('admin/categories*') || request()->is('admin/brands*') || request()->is('admin/books*') || request()->is('admin/sub_categories*') ? 'true' : 'false' }},
                             init() {
-                                if ({{ request()->is('admin/categories*') || request()->is('admin/books*') || request()->is('admin/sub_categories*') ? 'true' : 'false' }}) {
+                                if ({{ request()->is('admin/categories*') || request()->is('admin/brands*') || request()->is('admin/books*') || request()->is('admin/sub_categories*') ? 'true' : 'false' }}) {
                                     this.$nextTick(() => this.$refs.users.scrollIntoView({ behavior: 'smooth' }));
                                 }
                             }
                         }" x-ref="users" class="pt-1">
                             <button type="button"
-                                class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ request()->is('admin/categories*') || request()->is('admin/books*') || request()->is('admin/sub_categories*') ? 'bg-slate-200 dark:bg-slate-500' : '' }}"
+                                class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ request()->is('admin/categories*') || request()->is('admin/brands*') || request()->is('admin/books*') || request()->is('admin/sub_categories*') ? 'bg-slate-200 dark:bg-slate-500' : '' }}"
                                 :class="{ 'bg-slate-100 dark:bg-slate-700': open }"
                                 @click="open = !open; if (open) $nextTick(() => $refs.users.scrollIntoView({ behavior: 'smooth' }))">
                                 <img src="{{ asset('assets/icons/book_categories.png') }}" alt="icon"
                                     class="object-contain w-8 h-8 bg-white rounded dark:bg-gray-200">
-                                <span class="flex-1 text-left ms-3 rtl:text-right whitespace-nowrap">Categories</span>
+                                <span class="flex-1 text-left ms-3 rtl:text-right whitespace-nowrap">Products</span>
                                 <svg class="w-3 h-3 transition-transform duration-200 transform"
                                     :class="{ 'rotate-180': open }" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
@@ -472,7 +473,7 @@
                             </ul>
                         </li>
 
-                        <li x-data="{
+                        {{-- <li x-data="{
                             open: {{ request()->is('admin/bulletins*') || request()->is('admin/bulletins_categories*') ? 'true' : 'false' }},
                             init() {
                                 if ({{ request()->is('admin/bulletins*') || request()->is('admin/bulletins_categories*') ? 'true' : 'false' }}) {
@@ -510,7 +511,7 @@
 
 
                             </ul>
-                        </li>
+                        </li> --}}
                     @endif
 
                     @can('view user')
@@ -543,14 +544,14 @@
                                         Users
                                     </a>
                                 </li>
-                                @can('view role')
+                                {{-- @can('view role')
                                     <li>
                                         <a href="{{ url('admin/roles') }}"
                                             class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ request()->is('admin/roles*') ? 'bg-slate-200 dark:bg-slate-500' : '' }}">
                                             Roles
                                         </a>
                                     </li>
-                                @endcan
+                                @endcan --}}
                                 {{-- <li>
                                     <a href="{{ url('admin/permissions') }}"
                                         class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ request()->is('admin/permissions*') ? 'bg-slate-200 dark:bg-slate-500' : '' }}">
@@ -562,14 +563,14 @@
                         </li>
                     @endcan
 
-                    <li class="mt-2">
+                    {{-- <li class="mt-2">
                         <x-sidebar-item href="{{ url('admin/orders') }}"
                             class="{{ request()->is('admin/orders*') ? 'bg-slate-200 dark:bg-slate-500' : '' }}">
                             <img src="{{ asset('assets/icons/book.png') }}" alt="icon"
                                 class="object-contain w-8 h-8 p-0.5 bg-white dark:bg-gray-200 rounded">
                             <span class="ml-3">Orders</span>
                         </x-sidebar-item>
-                    </li>
+                    </li> --}}
                 </ul>
 
                 @can('view setting')

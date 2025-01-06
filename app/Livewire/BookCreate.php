@@ -135,6 +135,7 @@ class BookCreate extends Component
             'category_id' => 'nullable',
             'brand_id' => 'nullable',
             'sub_category_id' => 'nullable',
+            'shipping' => 'nullable',
         ]);
 
         // dd($validated);

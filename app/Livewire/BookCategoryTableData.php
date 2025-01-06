@@ -84,7 +84,7 @@ class BookCategoryTableData extends Component
         try {
             $validated = $this->validate([
                 'newName' => 'required|string|max:255|unique:categories,name',
-                'newName_kh' => 'required|string|max:255',
+                'newName_kh' => 'nullable|string|max:255',
                 'newDdc' => 'nullable|string|max:255',
             ]);
 
@@ -132,7 +132,7 @@ class BookCategoryTableData extends Component
         $this->ddc = null;
         $this->name = null;
         $this->name_kh = null;
-        $this->gender = null;
+        // $this->gender = null;
     }
 
     public function update($id)
@@ -140,7 +140,7 @@ class BookCategoryTableData extends Component
         try {
             $validated = $this->validate([
                 'name' => 'required|string|max:255|unique:categories,name,' . $id,
-                'name_kh' => 'required|string|max:255',
+                'name_kh' => 'nullable|string|max:255',
                 'ddc' => 'nullable|string|max:255',
             ]);
 

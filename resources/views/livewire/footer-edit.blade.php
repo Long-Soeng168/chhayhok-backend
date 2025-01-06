@@ -68,19 +68,19 @@
         @csrf
         <div class="grid gap-5 mb-5 lg:grid-cols-2">
             <!-- Start Name -->
-            <div>
+            {{-- <div class="col-span-2">
                 <x-input-label for="name" :value="__('Name')" /><span class="text-red-500">*</span>
                 <x-text-input id="name" class="block w-full mt-1" type="text" name="name" wire:model='name'
                     required autofocus placeholder="Name" />
                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
-            </div>
-            <div>
+            </div> --}}
+            {{-- <div>
                 <x-input-label for="name_kh" :value="__('Name KH')" /><span class="text-red-500">*</span>
                 <x-text-input id="name_kh" class="block w-full mt-1" type="text" name="name_kh" wire:model='name_kh'
                     required autofocus placeholder="Name KH" />
                 <x-input-error :messages="$errors->get('name_kh')" class="mt-2" />
-            </div>
-            <div class="col-span-1">
+            </div> --}}
+            <div class="col-span-2">
                 <label for="copyright" class = 'mb-4 text-sm font-medium text-gray-600 dark:text-white'>
                    {{ __('Copy Right') }}
                 </label>
@@ -88,14 +88,14 @@
                     required autofocus placeholder="Copy Right" />
                 <x-input-error :messages="$errors->get('copyright')" class="mt-2" />
             </div>
-            <div class="col-span-1">
+            {{-- <div class="col-span-1">
                 <label for="copyright_kh" class = 'mb-4 text-sm font-medium text-gray-600 dark:text-white'>
                    {{ __('Copy Right KH') }}
                 </label>
                 <x-text-input id="copyright_kh" class="block w-full mt-1" type="text" name="copyright_kh" wire:model='copyright_kh'
                     required autofocus placeholder="Copy Right KH" />
                 <x-input-error :messages="$errors->get('copyright_kh')" class="mt-2" />
-            </div>
+            </div> --}}
             <!-- End Name -->
 
         </div>

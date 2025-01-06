@@ -95,7 +95,7 @@
                 Add Product
             </x-primary-button>
 
-            {{-- <div class="flex items-center w-full space-x-3 md:w-auto">
+            {{-- <div class="flex items-center w-full space-x-3 md:w-auto hidden">
                 <button id="filterDropdownButton"
                     class="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg md:w-auto focus:outline-none hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
                     type="button">
@@ -178,13 +178,14 @@
                                     <!-- Modal toggle -->
                                     <a href="{{ url('admin/book_images/' . $item->id) }}"
                                         @mouseenter="tooltip = true" @mouseleave="tooltip = false" class="relative">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                            class="lucide lucide-plus-circle">
-                                            <circle cx="12" cy="12" r="10" />
-                                            <path d="M8 12h8" />
-                                            <path d="M12 8v8" />
+                                            class="lucide lucide-images">
+                                            <path d="M18 22H4a2 2 0 0 1-2-2V6" />
+                                            <path d="m22 13-1.296-1.296a2.41 2.41 0 0 0-3.408 0L11 18" />
+                                            <circle cx="12" cy="8" r="2" />
+                                            <rect width="16" height="16" x="6" y="2" rx="2" />
                                         </svg>
                                         <!-- View tooltip -->
                                         <div x-show="tooltip" x-transition:enter="transition ease-out duration-200"
@@ -203,13 +204,14 @@
                                     <!-- Modal toggle -->
                                     <a href="{{ url('admin/book_videos/' . $item->id) }}"
                                         @mouseenter="tooltip = true" @mouseleave="tooltip = false" class="relative">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                            class="lucide lucide-plus-circle">
-                                            <circle cx="12" cy="12" r="10" />
-                                            <path d="M8 12h8" />
-                                            <path d="M12 8v8" />
+                                            class="lucide lucide-list-video">
+                                            <path d="M12 12H3" />
+                                            <path d="M16 6H3" />
+                                            <path d="M12 18H3" />
+                                            <path d="m16 12 5 3-5 3v-6Z" />
                                         </svg>
                                         <!-- View tooltip -->
                                         <div x-show="tooltip" x-transition:enter="transition ease-out duration-200"
@@ -252,13 +254,15 @@
                                         wire:confirm="Are you sure? you want to delete : {{ $item->title }}"
                                         @mouseenter="tooltip = true" @mouseleave="tooltip = false"
                                         class="text-red-600">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                            class="lucide lucide-trash">
+                                            class="lucide lucide-trash-2">
                                             <path d="M3 6h18" />
                                             <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
                                             <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+                                            <line x1="10" x2="10" y1="11" y2="17" />
+                                            <line x1="14" x2="14" y1="11" y2="17" />
                                         </svg>
                                     </a>
 
@@ -274,13 +278,15 @@
                                     <!-- Modal toggle -->
                                     <a href="{{ url('admin/books/' . $item->id . '/edit') }}"
                                         @mouseenter="tooltip = true" @mouseleave="tooltip = false">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                                             class="lucide lucide-file-pen-line">
-                                            <path d="m18 5-3-3H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2" />
+                                            <path
+                                                d="m18 5-2.414-2.414A2 2 0 0 0 14.172 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2" />
+                                            <path
+                                                d="M21.378 12.626a1 1 0 0 0-3.004-3.004l-4.01 4.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z" />
                                             <path d="M8 18h1" />
-                                            <path d="M18.4 9.6a2 2 0 1 1 3 3L17 17l-4 1 1-4Z" />
                                         </svg>
                                     </a>
                                     <!-- View tooltip -->

@@ -69,12 +69,12 @@
         @csrf
         <div class="grid gap-5 mb-5 lg:grid-cols-2">
             <!-- Start Name -->
-            <div class="col-span-2">
+            {{-- <div class="col-span-2">
                 <x-input-label for="name" :value="__('Name')" /><span class="text-red-500">*</span>
                 <x-text-input id="name" class="block w-full mt-1" type="text" name="name" wire:model='name'
                     required autofocus placeholder="Name" />
                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
-            </div>
+            </div> --}}
 
             <!-- End Name -->
 

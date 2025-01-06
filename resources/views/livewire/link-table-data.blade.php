@@ -60,7 +60,7 @@
             </x-primary-button>
             @endcan
 
-            {{-- <div class="flex items-center w-full space-x-3 md:w-auto">
+            {{-- <div class="flex items-center hidden w-full space-x-3 md:w-auto">
                 <button id="filterDropdownButton"
                     class="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg md:w-auto focus:outline-none hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
                     type="button">
@@ -97,10 +97,10 @@
                         </div>
                     </th>
 
-                    <th scope="col" class="px-4 py-3">Name_kh</th>
+                    {{-- <th scope="col" class="px-4 py-3">Name_kh</th> --}}
                     <th scope="col" class="px-4 py-3">Link</th>
                     <th scope="col" class="px-4 py-3">Order_Index</th>
-                    <th scope="col" class="px-4 py-3">Created_at</th>
+                    {{-- <th scope="col" class="px-4 py-3">Created_at</th> --}}
                     <th scope="col" class="py-3 text-center">Action</th>
                 </tr>
             </thead>
@@ -119,7 +119,7 @@
                             </a>
                         </th>
                         <x-table-data value="{{ $item->name }}" />
-                        <x-table-data value="{{ $item->name_kh }}" />
+                        {{-- <x-table-data value="{{ $item->name_kh }}" /> --}}
                         {{-- <x-table-data value="{{ $item->description }}" /> --}}
                         <x-table-data>
                             <span
@@ -128,7 +128,7 @@
                             </span>
                         </x-table-data>
                         <x-table-data value="{{ $item->order_index }}" />
-                        <x-table-data value="{{ $item->created_at?->format('d-M-Y') }}" />
+                        {{-- <x-table-data value="{{ $item->created_at?->format('d-M-Y') }}" /> --}}
 
 
                         <td class="px-6 py-4">

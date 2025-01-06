@@ -60,7 +60,7 @@
             <!--</x-primary-button>-->
             <!--@endcan-->
 
-            {{-- <div class="flex items-center w-full space-x-3 md:w-auto">
+            {{-- <div class="flex items-center w-full space-x-3 md:w-auto hidden">
                 <button id="filterDropdownButton"
                     class="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg md:w-auto focus:outline-none hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
                     type="button">
@@ -109,10 +109,10 @@
                         <td class="w-4 px-4 py-3">
                             {{ $loop->iteration }}
                         </td>
-                        <x-table-data value="{{ $item->name }}" /> 
+                        <x-table-data value="{{ $item->name }}" />
                         <x-table-data value="{{ $item->phone }}" />
                         <x-table-data value="{{ $item->note }}" />
-                        <x-table-data value="$ {{  $item->total }}" /> 
+                        <x-table-data value="$ {{  $item->total }}" />
                          <td class="text-center" >
                             <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown-{{$item->id}}"
                                 class="{{ $item->status == 1 ? 'text-green-500' : ($item->status == 0 ? 'text-yellow-700' : 'text-red-500') }} py-2.5 px-5 me-2 mb-2 text-sm flex gap-1 items-center font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
@@ -124,24 +124,24 @@
                                    <div id="dropdown-{{$item->id}}" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
                                         <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton-{{$item->id}}">
                                           <li>
-                                             <button wire:click="updateStatus({{$item->id}}, 1)" 
+                                             <button wire:click="updateStatus({{$item->id}}, 1)"
                                                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white w-full">
                                                 Complete
                                             </button>
                                           </li>
                                            <li>
-                                             <button wire:click="updateStatus({{$item->id}}, 0)" 
+                                             <button wire:click="updateStatus({{$item->id}}, 0)"
                                                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white w-full">
                                                 In-Progress
                                             </button>
                                           </li>
                                            <li>
-                                             <button wire:click="updateStatus({{$item->id}}, -1)" 
+                                             <button wire:click="updateStatus({{$item->id}}, -1)"
                                                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white w-full">
                                                 Reject
                                             </button>
                                           </li>
-                                        
+
                                         </ul>
                                     </div>
                         </td>

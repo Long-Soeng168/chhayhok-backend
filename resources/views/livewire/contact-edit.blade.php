@@ -68,7 +68,7 @@
         @csrf
         <div class="grid gap-5 mb-5 lg:grid-cols-2">
             <!-- Start Name -->
-            <div>
+            {{-- <div>
                 <x-input-label for="name" :value="__('Name')" /><span class="text-red-500">*</span>
                 <x-text-input id="name" class="block w-full mt-1" type="text" name="name" wire:model='name'
                     required autofocus placeholder="Name" />
@@ -97,7 +97,7 @@
                 <x-text-input id="address" class="block w-full mt-1" type="text" name="address" wire:model='address'
                     required autofocus placeholder="Address" />
                 <x-input-error :messages="$errors->get('address')" class="mt-2" />
-            </div>
+            </div> --}}
             <div class="col-span-2">
                 <label for="map" class = 'mb-4 text-sm font-medium text-gray-600 dark:text-white'>
                    {{ __('Map') }}
@@ -114,10 +114,10 @@
         <div class="mb-5">
         </div>
 
-        <div class="mb-5" wire:ignore>
+        {{-- <div class="mb-5" wire:ignore>
             <x-input-label for="description" :value="__('Description')" />
             <textarea id="description" name="description" wire:model="description"></textarea>
-        </div>
+        </div> --}}
         <div>
             @can('update setting')
             <button wire:click.prevent="save"
