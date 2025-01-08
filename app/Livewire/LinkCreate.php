@@ -55,7 +55,7 @@ class LinkCreate extends Component
             'name' => 'required|string|max:255',
             'name_kh' => 'nullable|string|max:255',
             'image' => 'required|file|max:2048',
-            'link' => 'required|url|max:255',
+            'link' => 'required|max:255',
             'order_index' => 'nullable',
             'link_in_product_detail' => 'nullable',
         ]);
