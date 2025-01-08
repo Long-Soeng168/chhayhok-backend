@@ -115,7 +115,7 @@ class BookController extends Controller
         $categories = BookCategory::with('books')
             ->withCount('books')
             ->orderBy('books_count', 'desc')
-            ->take(10)
+            ->take(20)
             ->get();
 
         // Limit books to 10 per category

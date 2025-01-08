@@ -27,14 +27,39 @@ use App\Http\Controllers\Admin\FeatureController;
 use App\Http\Controllers\Admin\PublisherController;
 
 use App\Http\Controllers\Admin\OrderController;
-
-
+use App\Models\Book;
+use App\Models\BookImage;
 
 /*
 |--------------------------------------------------------------------------
 */
 
+Route::get('/migrate', function () {
+    // $data = Book::with(['subCategory' => function ($sub_query) {
+    //     return $sub_query->with('category');
+    // }])->get();
 
+    // foreach ($data as $key => $value) {
+    //     if (!empty($value->subCategory) && !empty($value->subCategory->category)) {
+    //         $value->update([
+    //             'category_id' => $value->subCategory->category->id,
+    //         ]);
+    //     }
+    // }
+
+    $data = Book::with('images')->get();
+    // foreach ($data as $key => $value) {
+    //     if (!empty($value->images) && !empty($value->images[0])) {
+    //         $value->update([
+    //             'image' => $value->images[0]->image,
+    //         ]);
+    //         $imageAdded = BookImage::find($value->images[0]->id);
+    //         $imageAdded->delete();
+    //     }
+    // }
+
+    return $data;
+});
 
 
 // Route::get('/fetch_book_cover', [HomeController::class, 'fetchAndSaveBookCover']);
