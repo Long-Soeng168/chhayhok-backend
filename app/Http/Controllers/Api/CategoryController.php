@@ -31,8 +31,10 @@ class CategoryController extends Controller
                         $bookQuery->limit(10); // Optional: Limit books per sub-category
                     }]);
             }]);
-        }else if($withSub == 2){
-            $query->with('subCategories');
+        } else if ($withSub == 2) {
+            $query->with(['subCategories' => function ($subQuery) {
+                $subQuery->withCount('books');
+            }]);
         }
 
         // Apply limit if provided
