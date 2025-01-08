@@ -14,7 +14,7 @@ class BookController extends Controller
      */
     public function index(Request $request)
     {
-        $perPage = $request->perPage ?? 12;
+        $perPage = $request->perPage ?? 20;
         $search = $request->search;
         $categoryId = $request->categoryId;
         $brandId = $request->brandId;
