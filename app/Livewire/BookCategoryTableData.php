@@ -30,10 +30,10 @@ class BookCategoryTableData extends Component
     public $filter = 0;
 
     #[Url(history: true)]
-    public $sortBy = 'created_at';
+    public $sortBy = 'order_index';
 
     #[Url(history: true)]
-    public $sortDir = 'DESC';
+    public $sortDir = 'ASC';
 
     public function updatedImage()
     {
