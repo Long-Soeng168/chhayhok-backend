@@ -74,9 +74,19 @@ class BookCategoryTableData extends Component
         session()->flash('success', 'Category successfully deleted!');
     }
 
+    public function updateStatus($id, $status) {
+        $category = Category::findOrFail($id);
+        $category->update([
+            'status' => $status,
+        ]);
+
+        session()->flash('success', 'Update Successfully!');
+    }
+
     // ==========Add New Category============
     public $newDdc = null;
     public $newName = null;
+    public $newOrderIndex = null;
     public $newName_kh = null;
 
     public function save()
@@ -86,6 +96,7 @@ class BookCategoryTableData extends Component
                 'newName' => 'required|string|max:255|unique:categories,name',
                 'newName_kh' => 'nullable|string|max:255',
                 'newDdc' => 'nullable|string|max:255',
+                'newOrderIndex' => 'nullable',
             ]);
 
             if (!empty($this->image)) {
@@ -100,13 +111,14 @@ class BookCategoryTableData extends Component
             Category::create([
                 'ddc' => $this->newDdc,
                 'name' => $this->newName,
+                'order_index' => $this->newOrderIndex,
                 'name_kh'=> $this->newName_kh,
                 'image' => $filename ?? '',
             ]);
 
             session()->flash('success', 'Add New Category successfully!');
 
-            $this->reset(['newName', 'newName_kh', 'ddc']);
+            $this->reset(['newName', 'newName_kh', 'ddc', 'newOrderIndex']);
         } catch (\Illuminate\Validation\ValidationException $e) {
             session()->flash('error', $e->validator->errors()->all());
         }
@@ -115,6 +127,7 @@ class BookCategoryTableData extends Component
     public $editId = null;
     public $ddc;
     public $name;
+    public $order_index;
     public $name_kh;
 
     public function setEdit($id)
@@ -124,6 +137,7 @@ class BookCategoryTableData extends Component
         $this->ddc = $category->ddc;
         $this->name = $category->name;
         $this->name_kh = $category->name_kh;
+        $this->order_index = $category->order_index;
     }
 
     public function cancelUpdate()
@@ -132,6 +146,7 @@ class BookCategoryTableData extends Component
         $this->ddc = null;
         $this->name = null;
         $this->name_kh = null;
+        $this->order_index = null;
         // $this->gender = null;
     }
 
@@ -142,6 +157,7 @@ class BookCategoryTableData extends Component
                 'name' => 'required|string|max:255|unique:categories,name,' . $id,
                 'name_kh' => 'nullable|string|max:255',
                 'ddc' => 'nullable|string|max:255',
+                'order_index' => 'nullable',
             ]);
 
             if (!empty($this->image)) {
@@ -159,7 +175,7 @@ class BookCategoryTableData extends Component
 
             session()->flash('success', 'Category successfully edited!');
 
-            $this->reset(['name', 'name_kh', 'editId', 'ddc']);
+            $this->reset(['name', 'name_kh', 'editId', 'ddc', 'order_index']);
         } catch (\Illuminate\Validation\ValidationException $e) {
             session()->flash('error', $e->validator->errors()->all());
         }

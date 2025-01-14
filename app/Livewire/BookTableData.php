@@ -63,6 +63,15 @@ class BookTableData extends Component
         session()->flash('success', 'Successfully deleted!');
     }
 
+    public function updateStatus($id, $status) {
+        $getedItem = Book::findOrFail($id);
+        $getedItem->update([
+            'status' => $status,
+        ]);
+
+        session()->flash('success', 'Update Successfully!');
+    }
+
 
     // ResetPage when updated search
     public function updatedSearch()

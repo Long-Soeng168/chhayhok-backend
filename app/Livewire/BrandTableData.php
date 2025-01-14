@@ -74,6 +74,15 @@ class BrandTableData extends Component
         session()->flash('success', 'Brand successfully deleted!');
     }
 
+    public function updateStatus($id, $status) {
+        $getedItem = Brand::findOrFail($id);
+        $getedItem->update([
+            'status' => $status,
+        ]);
+
+        session()->flash('success', 'Update Successfully!');
+    }
+
     // ==========Add New Category============
     public $newDdc = null;
     public $newName = null;

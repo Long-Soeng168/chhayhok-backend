@@ -118,7 +118,7 @@ class BookCreate extends Component
             'title' => 'required|string|max:255',
             'price' => 'required',
             'discount' => 'nullable',
-            'language' => 'required|string|max:255',
+            'language' => 'nullable|string|max:255',
             'image' => 'required|image|max:2048',
             'file' => 'nullable|file|max:51200',
             'authors' => 'nullable|string|max:255',

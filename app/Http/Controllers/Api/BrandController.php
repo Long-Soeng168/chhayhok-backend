@@ -23,7 +23,7 @@ class BrandController extends Controller
             }]);
         }
 
-        $brands = $query->orderBy('order_index')->orderBy('name')->get();
+        $brands = $query->orderBy('order_index')->orderBy('name')->where('status', 1)->get();
 
 
         //Brand::query()->with('books')->orderBy('order_index')->orderBy('name')->get();

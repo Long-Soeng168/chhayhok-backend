@@ -55,6 +55,15 @@ class BookSubCategoryTableData extends Component
         session()->flash('success', 'Sub-Category successfully deleted!');
     }
 
+    public function updateStatus($id, $status) {
+        $getedItem = SubCategory::findOrFail($id);
+        $getedItem->update([
+            'status' => $status,
+        ]);
+
+        session()->flash('success', 'Update Successfully!');
+    }
+
      // ==========Add New SubCategory============
      public $newDdc = null;
      public $newName = null;

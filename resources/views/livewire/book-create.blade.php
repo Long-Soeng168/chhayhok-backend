@@ -86,17 +86,36 @@
                             name="price" placeholder='Example : 7$' :value="old('price')" autocomplete="price" />
                         <x-input-error :messages="$errors->get('price')" class="mt-2" />
                     </div>
-                    {{-- <div class="">
+                    <div class="">
                         <x-input-label for="discount" :value="__('Discount')" />
                         <x-text-input wire:model='discount' id="discount" class="block w-full mt-1" type="number"
                             name="discount" placeholder='Example: 30%' :value="old('discount')" autocomplete="discount" />
                         <x-input-error :messages="$errors->get('discount')" class="mt-2" />
-                    </div> --}}
+                    </div>
                     <div class="">
                         <x-input-label for="shipping" :value="__('Shipping ($)')" />
                         <x-text-input wire:model='shipping' id="shipping" class="block w-full mt-1" type="number"
                             name="shipping" placeholder='Shipping' :value="old('shipping')" autocomplete="shipping" />
                         <x-input-error :messages="$errors->get('shipping')" class="mt-2" />
+                    </div>
+                    <div class="relative w-full group">
+                        <x-input-label for="brand_id" :value="__('Brand')" />
+                        <div class="flex flex-1 gap-1 mt-1">
+                            <div class="flex justify-start flex-1 h-11">
+                                <x-select-option wire:model.live='brand_id' id="brand_id" name="brand_id"
+                                    class="brand-select">
+                                    <option wire:key='brand' value="">Select brand...</option>
+                                    @forelse ($brands as $brand)
+                                        <option wire:key='{{ $brand->id }}' value="{{ $brand->id }}">
+                                            {{ $brand->name }}
+                                        </option>
+                                    @empty
+                                        <option wire:key='nocateogry' value=""> --No brand--</option>
+                                    @endforelse
+                                </x-select-option>
+                            </div>
+                        </div>
+                        <x-input-error :messages="$errors->get('brand_id')" class="mt-2" />
                     </div>
 
                     <div class="grid gap-4 md:col-span-2 md:grid-cols-2">
@@ -151,25 +170,7 @@
 
                     </div>
 
-                    <div class="relative w-full group">
-                        <x-input-label for="brand_id" :value="__('Brand')" />
-                        <div class="flex flex-1 gap-1 mt-1">
-                            <div class="flex justify-start flex-1 h-11">
-                                <x-select-option wire:model.live='brand_id' id="brand_id" name="brand_id"
-                                    class="brand-select">
-                                    <option wire:key='brand' value="">Select brand...</option>
-                                    @forelse ($brands as $brand)
-                                        <option wire:key='{{ $brand->id }}' value="{{ $brand->id }}">
-                                            {{ $brand->name }}
-                                        </option>
-                                    @empty
-                                        <option wire:key='nocateogry' value=""> --No brand--</option>
-                                    @endforelse
-                                </x-select-option>
-                            </div>
-                        </div>
-                        <x-input-error :messages="$errors->get('brand_id')" class="mt-2" />
-                    </div>
+
 
 
                     <div class="col-span-2 mb-5" wire:ignore>

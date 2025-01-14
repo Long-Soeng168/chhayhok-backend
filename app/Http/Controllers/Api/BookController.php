@@ -83,7 +83,7 @@ class BookController extends Controller
         }
 
         // Paginate results with the specified number per page
-        $books = $query->paginate($perPage);
+        $books = $query->where('status', 1)->paginate($perPage);
 
         return response()->json($books);
     }
@@ -91,10 +91,10 @@ class BookController extends Controller
     public function new_arrival(Request $request)
     {
         // First set of 10 books ordered by ID in descending order
-        $first_set = Book::query()->orderBy('id', 'DESC')->limit(10)->get();
+        $first_set = Book::query()->orderBy('id', 'DESC')->where('status', 1)->limit(10)->get();
 
         // Second set of 10 books ordered by ID in descending order, offset by 10
-        $second_set = Book::query()->orderBy('id', 'DESC')->offset(10)->limit(10)->get();
+        $second_set = Book::query()->orderBy('id', 'DESC')->where('status', 1)->offset(10)->limit(10)->get();
 
         return response()->json([
             'first_set' => $first_set,
@@ -105,7 +105,7 @@ class BookController extends Controller
     public function new_products(Request $request)
     {
         // First set of 10 books ordered by ID in descending order
-        $products = Book::query()->orderBy('id', 'DESC')->limit(12)->get();
+        $products = Book::query()->orderBy('id', 'DESC')->where('status', 1)->limit(12)->get();
 
         return response()->json($products);
     }
@@ -120,7 +120,7 @@ class BookController extends Controller
 
         // Limit books to 10 per category
         $categories->map(function ($category) {
-            $category->setRelation('books', $category->books->take(10));
+            $category->setRelation('books', $category->books->where('status', 1)->take(10));
             return $category;
         });
 
@@ -133,10 +133,10 @@ class BookController extends Controller
     {
         $limit = $request->limit;
         // First set of 10 books ordered by ID in descending order
-        $first_set = Book::query()->orderBy('order_approved', 'DESC')->limit($limit ?? 10)->get();
+        $first_set = Book::query()->orderBy('order_approved', 'DESC')->limit($limit ?? 10)->where('status', 1)->get();
 
         // Second set of 10 books ordered by ID in descending order, offset by 10
-        $second_set = Book::query()->orderBy('order_approved', 'DESC')->offset(10)->limit($limit ?? 10)->get();
+        $second_set = Book::query()->orderBy('order_approved', 'DESC')->offset(10)->where('status', 1)->limit($limit ?? 10)->get();
 
         return response()->json([
             'first_set' => $first_set,
@@ -209,7 +209,7 @@ class BookController extends Controller
         }
 
         // Paginate results with the specified number per page
-        $books = $query->where('category_id', 83)->paginate($perPage);
+        $books = $query->where('category_id', 83)->where('status', 1)->paginate($perPage);
 
         return response()->json($books);
     }
