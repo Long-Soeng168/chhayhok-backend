@@ -10,6 +10,8 @@ use App\Models\Author;
 use App\Models\Publisher;
 use App\Models\BookSubCategory;
 use App\Models\Brand;
+use Carbon\Carbon;
+use Carbon\Doctrine\CarbonType;
 use Image;
 
 class BookEdit extends Component
@@ -42,9 +44,11 @@ class BookEdit extends Component
     public $category_id = null;
     public $brand_id = null;
     public $shipping = 0;
+    public $post_date;
     public $sub_category_id = null;
 
-    public function mount($id) {
+    public function mount($id)
+    {
         $this->item = Book::findOrFail($id);
         // if(request()->user()->id !== $this->item->publisher_id && !request()->user()->hasRole(['super-admin', 'admin'])){
         //     return redirect('admin/books')->with('error', ['Only Onwer or Admin can update!']);
@@ -70,6 +74,9 @@ class BookEdit extends Component
         $this->year = $this->item->year;
         $this->brand_id = $this->item->brand_id;
         $this->shipping = $this->item->shipping;
+        $this->post_date = $this->item->post_date
+            ? Carbon::parse($this->item->post_date)->toDateString()
+            : Carbon::today()->toDateString();
     }
 
 
@@ -136,7 +143,6 @@ class BookEdit extends Component
             session()->flash('success', 'Add New Publisher successfully!');
 
             $this->reset(['newPublisherName', 'newPublisherGender']);
-
         } catch (\Illuminate\Validation\ValidationException $e) {
             session()->flash('error', $e->validator->errors()->all());
         }
@@ -165,6 +171,7 @@ class BookEdit extends Component
             'sub_category_id' => 'nullable',
             'brand_id' => 'nullable',
             'shipping' => 'nullable',
+            'post_date' => 'nullable',
         ]);
 
         // dd($validated);
@@ -213,7 +220,6 @@ class BookEdit extends Component
                 if (file_exists($filePath)) {
                     unlink($filePath);
                 }
-
             }
         }
 

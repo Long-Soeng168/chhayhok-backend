@@ -118,6 +118,7 @@
                         <x-input-error :messages="$errors->get('brand_id')" class="mt-2" />
                     </div>
 
+
                     <div class="grid gap-4 md:col-span-2 md:grid-cols-2">
 
                         {{-- Start Category Select --}}
@@ -170,8 +171,12 @@
 
                     </div>
 
-
-
+                    <div class="">
+                        <x-input-label for="post_date" :value="__('Post Date')" />
+                        <x-text-input wire:model='post_date' id="post_date" class="block w-full mt-1" type="date"
+                            name="post_date"  :value="old('post_date')" autocomplete="post_date" />
+                        <x-input-error :messages="$errors->get('post_date')" class="mt-2" />
+                    </div>
 
                     <div class="col-span-2 mb-5" wire:ignore>
                         <x-input-label for="description" :value="__('Description')" />

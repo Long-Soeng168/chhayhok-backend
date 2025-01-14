@@ -10,6 +10,7 @@ use App\Models\Author;
 use App\Models\Publisher;
 use App\Models\BookSubCategory;
 use App\Models\Brand;
+use Carbon\Carbon;
 use Image;
 
 class BookCreate extends Component
@@ -41,6 +42,12 @@ class BookCreate extends Component
     public $brand_id = null;
     public $shipping = 0;
     public $sub_category_id = null;
+    public $post_date;
+
+    public function mount()
+    {
+        $this->post_date = Carbon::today()->toDateString();
+    }
 
     public function updatedCategory_id()
     {
@@ -136,6 +143,7 @@ class BookCreate extends Component
             'brand_id' => 'nullable',
             'sub_category_id' => 'nullable',
             'shipping' => 'nullable',
+            'post_date' => 'nullable',
         ]);
 
         // dd($validated);
