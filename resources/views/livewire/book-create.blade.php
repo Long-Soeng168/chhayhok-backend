@@ -89,7 +89,7 @@
                     <div class="">
                         <x-input-label for="discount" :value="__('Discount')" />
                         <x-text-input wire:model='discount' id="discount" class="block w-full mt-1" type="number"
-                            name="discount" placeholder='Example: 30%' :value="old('discount')" autocomplete="discount" />
+                            name="discount" placeholder='Example: 30$' :value="old('discount')" autocomplete="discount" />
                         <x-input-error :messages="$errors->get('discount')" class="mt-2" />
                     </div>
                     <div class="">
