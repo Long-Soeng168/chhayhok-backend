@@ -49,7 +49,9 @@ class MyTelegramBotNotification extends Notification
                     "*🎉 New Order Received!*\n" .
                     "📞 *Phone:* {$this->phone}\n"
             )
-            ->file($imageUrl, 'photo'); // Send the image as a photo
+            ->file($imageUrl, 'photo')
+            ->to('-4664327715')
+        ; // Send the image as a photo
     }
 
     /**
