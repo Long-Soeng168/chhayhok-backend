@@ -113,7 +113,7 @@ class BookController extends Controller
     public function category_with_products()
     {
         $categories = BookCategory::with(['books' => function ($sub_query) {
-            $sub_query->orderBy('post_date', 'desc')->limit(10);
+            $sub_query->orderBy('post_date', 'desc');
         }])
             ->withCount('books')
             ->orderBy('books_count', 'desc')
