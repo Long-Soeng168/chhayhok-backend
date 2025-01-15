@@ -112,7 +112,9 @@ class BookController extends Controller
 
     public function category_with_products()
     {
-        $categories = BookCategory::with('books')
+        $categories = BookCategory::with(['books' => function ($sub_query) {
+            $sub_query->orderBy('post_date', 'desc');
+        }])
             ->withCount('books')
             ->orderBy('books_count', 'desc')
             ->take(20)
@@ -121,7 +123,7 @@ class BookController extends Controller
 
         // Limit books to 10 per category
         $categories->map(function ($category) {
-            $category->setRelation('books', $category->books->where('status', 1)->orderBy('post_date', 'desc')->take(10));
+            $category->setRelation('books', $category->books->where('status', 1)->take(10));
             return $category;
         });
 
