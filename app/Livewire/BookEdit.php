@@ -177,6 +177,10 @@ class BookEdit extends Component
         // dd($validated);
         $validated['publisher_id'] = request()->user()->id;
 
+        if(!$validated['discount']) {
+            $validated['discount'] = null;
+        }
+
         foreach ($validated as $key => $value) {
             if (is_null($value) || $value == '' || empty($value)) {
                 $validated[$key] == null;
