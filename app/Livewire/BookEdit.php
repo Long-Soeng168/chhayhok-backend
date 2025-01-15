@@ -178,7 +178,7 @@ class BookEdit extends Component
         $validated['publisher_id'] = request()->user()->id;
 
         foreach ($validated as $key => $value) {
-            if (is_null($value) || $value == '') {
+            if (is_null($value) || $value == '' || empty($value)) {
                 $validated[$key] == null;
             }
         }
