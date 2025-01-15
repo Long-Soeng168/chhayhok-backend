@@ -76,7 +76,7 @@ class BookEdit extends Component
         $this->shipping = $this->item->shipping;
         $this->post_date = $this->item->post_date
             ? Carbon::parse($this->item->post_date)->toDateString()
-            : Carbon::today()->toDateString();
+            : null;
     }
 
 
