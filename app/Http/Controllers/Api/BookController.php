@@ -121,7 +121,7 @@ class BookController extends Controller
 
         // Limit books to 10 per category
         $categories->map(function ($category) {
-            $category->setRelation('books', $category->books->where('status', 1)->take(10));
+            $category->setRelation('books', $category->books->where('status', 1)->orderBy('post_date', 'desc')->take(10));
             return $category;
         });
 
