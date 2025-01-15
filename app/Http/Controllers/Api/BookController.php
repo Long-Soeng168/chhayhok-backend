@@ -119,6 +119,7 @@ class BookController extends Controller
             ->orderBy('books_count', 'desc')
             ->take(20)
             ->orderBy('order_index')
+            ->where('status', 1)
             ->get();
 
         // Limit books to 10 per category
