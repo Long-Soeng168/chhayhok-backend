@@ -154,7 +154,13 @@
                             </a>
                         </th>
                         <x-table-data value="{{ $item->title }}" />
-                        <x-table-data value="$ {{ $item->price }}" class="text-red-400 whitespace-nowrap" />
+                        <x-table-data class="text-red-400 whitespace-nowrap">
+                            @if ($item->discount > 0)
+                                <span class="text-gray-500 line-through">{{ $item->price }}</span>
+                            @endif
+                            $
+                            {{ $item->price - $item->discount }}
+                        </x-table-data>
                         <x-table-data value="$ {{ $item->discount ?? '0' }}" class="text-red-400" />
                         <x-table-data value="{{ $item->category?->name }}" />
                         <x-table-data class="text-center" value="{{ $item->brand?->name }}" />
