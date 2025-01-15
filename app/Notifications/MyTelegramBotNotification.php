@@ -40,7 +40,7 @@ class MyTelegramBotNotification extends Notification
     public function toTelegram(object $notifiable)
     {
         $product = Book::findOrFail($this->product_id);
-        $imageUrl = env('APP_URL') . '/assets/images/isbn/thumb/' . $product->image;
+        $imageUrl = env('APP_URL') . '/assets/images/isbn/' . $product->image;
         // dd($imageUrl);
 
         return TelegramFile::create()
