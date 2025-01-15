@@ -116,9 +116,9 @@ class BookController extends Controller
             $sub_query->orderBy('post_date', 'desc')->orderBy('id', 'desc');
         }])
             ->withCount('books')
-            ->orderBy('books_count', 'desc')
             ->take(20)
             ->orderBy('order_index')
+            ->orderBy('books_count', 'desc')
             ->where('status', 1)
             ->get();
 
