@@ -29,11 +29,11 @@ class CategoryController extends Controller
                 $subQuery->withCount('books') // Count books in each sub-category
                     ->with(['books' => function ($bookQuery) {
                         $bookQuery->limit(10); // Optional: Limit books per sub-category
-                    }]);
+                    }])->where('status', 1);
             }]);
         } else if ($withSub == 2) {
             $query->with(['subCategories' => function ($subQuery) {
-                $subQuery->withCount('books');
+                $subQuery->withCount('books')->where('status', 1);
             }]);
         }
 
