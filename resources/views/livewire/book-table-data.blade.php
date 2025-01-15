@@ -132,6 +132,7 @@
                         </div>
                     </th>
                     <th scope="col" class="px-4 py-3">Price</th>
+                    <th scope="col" class="px-4 py-3">Discount</th>
                     <th scope="col" class="px-4 py-3 text-center">Category</th>
                     <th scope="col" class="px-4 py-3">Brand</th>
                     <th scope="col" class="px-4 py-3 text-center">Status</th>
@@ -153,7 +154,8 @@
                             </a>
                         </th>
                         <x-table-data value="{{ $item->title }}" />
-                        <x-table-data value="$ {{ $item->price }}" class="text-red-400" />
+                        <x-table-data value="$ {{ $item->price }}" class="text-red-400 whitespace-nowrap" />
+                        <x-table-data value="$ {{ $item->discount ?? '0' }}" class="text-red-400" />
                         <x-table-data value="{{ $item->category?->name }}" />
                         <x-table-data class="text-center" value="{{ $item->brand?->name }}" />
                         <td class="text-center">
