@@ -75,7 +75,7 @@ class BookSubCategoryTableData extends Component
          try {
              $validated = $this->validate([
                  'newName' => 'required|string|max:255|unique:sub_categories,name',
-                 'newName_kh' => 'required|string|max:255',
+                 'newName_kh' => 'nullable|string|max:255',
                  'new_category_id' => 'required',
                  'newDdc' => 'nullable|string|max:255',
              ]);
@@ -124,7 +124,7 @@ class BookSubCategoryTableData extends Component
         try {
             $validated = $this->validate([
                 'name' => 'required|string|max:255',
-                'name_kh' => 'required|string|max:255',
+                'name_kh' => 'nullable|string|max:255',
                 'category_id' => 'required',
                 'ddc' => 'nullable|string|max:255',
             ]);
