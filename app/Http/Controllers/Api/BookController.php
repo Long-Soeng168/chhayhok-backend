@@ -105,7 +105,7 @@ class BookController extends Controller
     public function new_products(Request $request)
     {
         // First set of 10 books ordered by ID in descending order
-        $products = Book::query()->where('status', 1)->orderBy('post_date', 'DESC')->orderBy('id', 'DESC')->limit(12)->get();
+        $products = Book::query()->where('status', 1)->orderBy('post_date', 'DESC')->orderBy('id', 'DESC')->limit(6)->get();
 
         return response()->json($products);
     }

@@ -219,6 +219,10 @@ Route::middleware('auth')->group(function () {
 });
 
 
+Route::get('/admin/dashboard', function(){
+   return redirect('/admin/books'); 
+});
+
 // ============================================
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
