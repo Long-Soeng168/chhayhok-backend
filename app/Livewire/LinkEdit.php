@@ -18,6 +18,7 @@ class LinkEdit extends Component
     public $name;
     public $name_kh;
     public $link;
+    public $type = 'social';
     public $order_index;
     public $description;
     public $description_kh;
@@ -29,6 +30,7 @@ class LinkEdit extends Component
         $this->name = $item->name;
         $this->name_kh = $item->name_kh;
         $this->link = $item->link;
+        $this->type = $item->type;
         $this->order_index = $item->order_index;
         $this->link_in_product_detail = $item->link_in_product_detail;
     }
@@ -47,17 +49,18 @@ class LinkEdit extends Component
         $validated = $this->validate([
             'name' => 'required|string|max:255',
             'name_kh' => 'nullable|string|max:255',
+            'type' => 'nullable|string|max:255',
             'link' => 'required|max:255',
             'order_index' => 'nullable',
             'link_in_product_detail' => 'nullable',
         ]);
 
         // Update the existing item record
-        if(!empty($this->image)){
+        if (!empty($this->image)) {
             // $filename = time() . '_' . $this->image->getClientOriginalName();
             $filename = time() . str()->random(10) . '.' . $this->image->getClientOriginalExtension();
 
-            $image_path = public_path('assets/images/links/'.$filename);
+            $image_path = public_path('assets/images/links/' . $filename);
             $imageUpload = Image::make($this->image->getRealPath())->save($image_path);
             $validated['image'] = $filename;
         }

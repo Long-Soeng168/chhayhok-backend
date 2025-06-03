@@ -7,6 +7,7 @@ use App\Models\About;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 use App\Models\Menu;
+use App\Models\Support;
 
 class MenuController extends Controller
 {
@@ -28,14 +29,21 @@ class MenuController extends Controller
     public function contact()
     {
         $contact = Contact::first();
-        return view('admin.menus.contact',[
+        return view('admin.menus.contact', [
             'contact' => $contact,
         ]);
     }
     public function about()
     {
         $about = About::first();
-        return view('admin.menus.about',[
+        return view('admin.menus.about', [
+            'about' => $about,
+        ]);
+    }
+    public function support()
+    {
+        $about = Support::first();
+        return view('admin.menus.support', [
             'about' => $about,
         ]);
     }

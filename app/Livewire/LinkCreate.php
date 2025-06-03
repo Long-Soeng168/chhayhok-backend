@@ -22,6 +22,7 @@ class LinkCreate extends Component
     public $order_index = 0;
     public $description = null;
     public $description_kh = null;
+    public $type = 'social';
     public $link_in_product_detail = 0;
 
     public function updatedImage()
@@ -54,6 +55,7 @@ class LinkCreate extends Component
         $validated = $this->validate([
             'name' => 'required|string|max:255',
             'name_kh' => 'nullable|string|max:255',
+            'type' => 'nullable|string|max:255',
             'image' => 'required|file|max:2048',
             'link' => 'required|max:255',
             'order_index' => 'nullable',

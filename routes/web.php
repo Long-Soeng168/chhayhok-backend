@@ -111,6 +111,7 @@ Route::group([
     Route::resource('settings/footer', FooterController::class);
     Route::get('settings/contact', [MenuController::class, 'contact']);
     Route::get('settings/about', [MenuController::class, 'about']);
+    Route::get('settings/support', [MenuController::class, 'support']);
     Route::resource('settings/features', FeatureController::class);
     Route::resource('settings/links', LinkController::class);
     Route::resource('settings/databases', DatabaseController::class);

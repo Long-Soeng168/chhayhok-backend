@@ -1,30 +1,30 @@
 <div>
     @if (session('success'))
-        <div class="fixed top-[5rem] right-4 z-[999999] " wire:key="{{ rand() }}" x-data="{ show: true }"
-            x-init="setTimeout(() => show = false, 7000)">
-            <div x-show="show" id="alert-2"
-                class="flex items-center p-4 mb-4 text-green-800 border border-green-500 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
-                role="alert">
-                <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                    fill="currentColor" viewBox="0 0 20 20">
-                    <path
-                        d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
-                </svg>
-                <div class="ml-2">
-                    {{ session('success') }}
-                </div>
-                <button type="button" @click="show = false"
-                    class="ms-auto -mx-1.5 -my-1.5 bg-green-50 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-green-400 dark:hover:bg-gray-700"
-                    data-dismiss-target="#alert-2" aria-label="Close">
-                    <span class="sr-only">Close</span>
-                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 14 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                    </svg>
-                </button>
+    <div class="fixed top-[5rem] right-4 z-[999999] " wire:key="{{ rand() }}" x-data="{ show: true }"
+        x-init="setTimeout(() => show = false, 7000)">
+        <div x-show="show" id="alert-2"
+            class="flex items-center p-4 mb-4 text-green-800 border border-green-500 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+            role="alert">
+            <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor" viewBox="0 0 20 20">
+                <path
+                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+            </svg>
+            <div class="ml-2">
+                {{ session('success') }}
             </div>
+            <button type="button" @click="show = false"
+                class="ms-auto -mx-1.5 -my-1.5 bg-green-50 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-green-400 dark:hover:bg-gray-700"
+                data-dismiss-target="#alert-2" aria-label="Close">
+                <span class="sr-only">Close</span>
+                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 14 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                </svg>
+            </button>
         </div>
+    </div>
     @endif
     <div
         class="flex flex-col px-4 py-3 space-y-3 lg:flex-row lg:items-center lg:justify-between lg:space-y-0 lg:space-x-4">
@@ -96,8 +96,7 @@
                             Name
                         </div>
                     </th>
-
-                    {{-- <th scope="col" class="px-4 py-3">Name_kh</th> --}}
+                    <th scope="col" class="px-4 py-3">Type</th>
                     <th scope="col" class="px-4 py-3">Link</th>
                     <th scope="col" class="px-4 py-3">Order_Index</th>
                     {{-- <th scope="col" class="px-4 py-3">Created_at</th> --}}
@@ -106,35 +105,36 @@
             </thead>
             <tbody>
                 @forelse ($items as $item)
-                    <tr wire:key='{{ $item->id }}'
-                        class="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <td class="w-4 px-4 py-3">
-                            {{ $loop->iteration }}
-                        </td>
-                        <th scope="row"
-                            class="flex items-center px-4 py-2 font-medium text-gray-900 dark:text-white">
-                            <a href="{{ asset('assets/images/links/' . $item->image) }}" class="glightbox">
-                                <img src="{{ asset('assets/images/links/' . $item->image) }}"
-                                    alt="iMac Front Image" class="object-contain h-10 mr-3 aspect-[1/1]">
-                            </a>
-                        </th>
-                        <x-table-data value="{{ $item->name }}" />
-                        {{-- <x-table-data value="{{ $item->name_kh }}" /> --}}
-                        {{-- <x-table-data value="{{ $item->description }}" /> --}}
-                        <x-table-data>
-                            <span
-                                class="bg-primary-100 text-primary-800 text-xs font-medium px-2 py-0.5 rounded dark:bg-primary-900 dark:text-primary-300 whitespace-nowrap">
-                                {{ $item->link }}
-                            </span>
-                        </x-table-data>
-                        <x-table-data value="{{ $item->order_index }}" />
-                        {{-- <x-table-data value="{{ $item->created_at?->format('d-M-Y') }}" /> --}}
+                <tr wire:key='{{ $item->id }}'
+                    class="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
+                    <td class="w-4 px-4 py-3">
+                        {{ $loop->iteration }}
+                    </td>
+                    <th scope="row"
+                        class="flex items-center px-4 py-2 font-medium text-gray-900 dark:text-white">
+                        <a href="{{ asset('assets/images/links/' . $item->image) }}" class="glightbox">
+                            <img src="{{ asset('assets/images/links/' . $item->image) }}"
+                                alt="iMac Front Image" class="object-contain h-10 mr-3 aspect-[1/1]">
+                        </a>
+                    </th>
+                    <x-table-data value="{{ $item->name }}" />
+                    <x-table-data value="{{ $item->type ?? '---' }}" />
+                    {{-- <x-table-data value="{{ $item->name_kh }}" /> --}}
+                    {{-- <x-table-data value="{{ $item->description }}" /> --}}
+                    <x-table-data>
+                        <span
+                            class="bg-primary-100 text-primary-800 text-xs font-medium px-2 py-0.5 rounded dark:bg-primary-900 dark:text-primary-300 whitespace-nowrap">
+                            {{ $item->link }}
+                        </span>
+                    </x-table-data>
+                    <x-table-data value="{{ $item->order_index }}" />
+                    {{-- <x-table-data value="{{ $item->created_at?->format('d-M-Y') }}" /> --}}
 
 
-                        <td class="px-6 py-4">
-                            <div class="flex items-start justify-center gap-3">
+                    <td class="px-6 py-4">
+                        <div class="flex items-start justify-center gap-3">
 
-                                {{-- <div class="pb-1" x-data="{ tooltip: false }">
+                            {{-- <div class="pb-1" x-data="{ tooltip: false }">
                                     <!-- Modal toggle -->
                                     <a href="#" @mouseenter="tooltip = true" @mouseleave="tooltip = false">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
@@ -154,60 +154,60 @@
                                     </div>
                                 </div> --}}
 
-                                @can('delete setting')
-                                <div class="pb-1" x-data="{ tooltip: false }">
-                                    <!-- Modal toggle -->
-                                    <a wire:click="delete({{ $item->id }})"
-                                        wire:confirm="Are you sure? you want to delete : {{ $item->name }}"
-                                         @mouseenter="tooltip = true" @mouseleave="tooltip = false" class="text-red-600">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                class="lucide lucide-trash">
-                                                <path d="M3 6h18" />
-                                                <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
-                                                <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
-                                            </svg>
-                                    </a>
+                            @can('delete setting')
+                            <div class="pb-1" x-data="{ tooltip: false }">
+                                <!-- Modal toggle -->
+                                <a wire:click="delete({{ $item->id }})"
+                                    wire:confirm="Are you sure? you want to delete : {{ $item->name }}"
+                                    @mouseenter="tooltip = true" @mouseleave="tooltip = false" class="text-red-600">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        class="lucide lucide-trash">
+                                        <path d="M3 6h18" />
+                                        <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+                                        <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+                                    </svg>
+                                </a>
 
-                                    <!-- View tooltip -->
-                                    <div x-show="tooltip" x-transition:enter="transition ease-out duration-200"
-                                        class="absolute z-[9999] inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm dark:bg-gray-700 whitespace-nowrap"
-                                        style="display: none;">
-                                        Delete
-                                    </div>
+                                <!-- View tooltip -->
+                                <div x-show="tooltip" x-transition:enter="transition ease-out duration-200"
+                                    class="absolute z-[9999] inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm dark:bg-gray-700 whitespace-nowrap"
+                                    style="display: none;">
+                                    Delete
                                 </div>
-                                @endcan
-
-                                @can('update setting')
-                                <div class="pb-1" x-data="{ tooltip: false }">
-                                    <!-- Modal toggle -->
-                                    <a href="{{ url('admin/settings/links/'.$item->id.'/edit') }}" @mouseenter="tooltip = true" @mouseleave="tooltip = false">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                            class="lucide lucide-file-pen-line">
-                                            <path d="m18 5-3-3H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2" />
-                                            <path d="M8 18h1" />
-                                            <path d="M18.4 9.6a2 2 0 1 1 3 3L17 17l-4 1 1-4Z" />
-                                        </svg>
-                                    </a>
-                                    <!-- View tooltip -->
-                                    <div x-show="tooltip" x-transition:enter="transition ease-out duration-200"
-                                        class="absolute z-[9999] inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm dark:bg-gray-700 whitespace-nowrap"
-                                        style="display: none;">
-                                        Edit
-                                    </div>
-                                </div>
-                                @endcan
-
                             </div>
-                        </td>
-                    </tr>
+                            @endcan
+
+                            @can('update setting')
+                            <div class="pb-1" x-data="{ tooltip: false }">
+                                <!-- Modal toggle -->
+                                <a href="{{ url('admin/settings/links/'.$item->id.'/edit') }}" @mouseenter="tooltip = true" @mouseleave="tooltip = false">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        class="lucide lucide-file-pen-line">
+                                        <path d="m18 5-3-3H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2" />
+                                        <path d="M8 18h1" />
+                                        <path d="M18.4 9.6a2 2 0 1 1 3 3L17 17l-4 1 1-4Z" />
+                                    </svg>
+                                </a>
+                                <!-- View tooltip -->
+                                <div x-show="tooltip" x-transition:enter="transition ease-out duration-200"
+                                    class="absolute z-[9999] inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm dark:bg-gray-700 whitespace-nowrap"
+                                    style="display: none;">
+                                    Edit
+                                </div>
+                            </div>
+                            @endcan
+
+                        </div>
+                    </td>
+                </tr>
                 @empty
-                    <tr>
-                        <td class="px-4 py-4">No Data...</td>
-                    </tr>
+                <tr>
+                    <td class="px-4 py-4">No Data...</td>
+                </tr>
                 @endforelse
 
 

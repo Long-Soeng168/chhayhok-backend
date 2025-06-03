@@ -1,4 +1,5 @@
 <div>
+
     @if (session('success'))
         <div class="fixed top-[5rem] right-4 z-[999999] " wire:key="{{ rand() }}" x-data="{ show: true }"
             x-init="setTimeout(() => show = false, 7000)">
@@ -74,136 +75,35 @@
                     required autofocus placeholder="Name" />
                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
             </div> --}}
-            {{-- <div>
-                <x-input-label for="name_kh" :value="__('Name KH')" /><span class="text-red-500">*</span>
-                <x-text-input id="name_kh" class="block w-full mt-1" type="text" name="name_kh" wire:model='name_kh'
-                    required autofocus placeholder="Name KH" />
-                <x-input-error :messages="$errors->get('name_kh')" class="mt-2" />
-            </div> --}}
-            <div class="col-span-2">
-                <label for="copyright" class = 'mb-4 text-sm font-medium text-gray-600 dark:text-white'>
-                   {{ __('Copy Right') }}
-                </label>
-                <x-text-input id="copyright" class="block w-full mt-1" type="text" name="copyright" wire:model='copyright'
-                    required autofocus placeholder="Copy Right" />
-                <x-input-error :messages="$errors->get('copyright')" class="mt-2" />
-            </div>
-            {{-- <div class="col-span-1">
-                <label for="copyright_kh" class = 'mb-4 text-sm font-medium text-gray-600 dark:text-white'>
-                   {{ __('Copy Right KH') }}
-                </label>
-                <x-text-input id="copyright_kh" class="block w-full mt-1" type="text" name="copyright_kh" wire:model='copyright_kh'
-                    required autofocus placeholder="Copy Right KH" />
-                <x-input-error :messages="$errors->get('copyright_kh')" class="mt-2" />
-            </div> --}}
+
             <!-- End Name -->
 
         </div>
 
-        {{-- <div class="grid gap-5 mb-5 lg:grid-cols-2 lg:gap-6">
-            <!-- Start Pages -->
-            <div>
-                <x-input-label for="pages_count" :value="__('Pages')" />
-                <x-text-input id="pages_count" class="block w-full" type="number" name="pages_count"
-                    wire:model='pages_count' autofocus placeholder="Number of Pages" />
-                <x-input-error :messages="$errors->get('pages_count')" class="mt-2" />
-            </div>
-            <!-- End Pages -->
-
-            <!-- Start Edition -->
-            <div>
-                <x-input-label for="edition" :value="__('Edition')" />
-                <x-text-input id="edition" class="block w-full" type="number" name="edition" wire:model='edition'
-                    autofocus placeholder="Edition" />
-                <x-input-error :messages="$errors->get('edition')" class="mt-2" />
-            </div>
-            <!-- End Edition -->
-
-            <!-- Start isbn -->
-            <div>
-                <x-input-label for="isbn" :value="__('ISBN')" />
-                <x-text-input id="isbn" class="block w-full" type="text" name="isbn" wire:model='isbn'
-                    placeholder="ISBN" />
-                <x-input-error :messages="$errors->get('isbn')" class="mt-2" />
-            </div>
-            <!-- End isbn -->
-
-            <!-- Start Link -->
-            <div>
-                <x-input-label for="link" :value="__('Link')" />
-                <x-text-input id="link" class="block w-full" type="text" name="link" wire:model='link'
-                    placeholder="Link" />
-                <x-input-error :messages="$errors->get('link')" class="mt-2" />
-            </div>
-            <!-- End Link -->
-        </div> --}}
 
         <div class="mb-5">
-            {{-- Start Image Upload --}}
-            {{-- <div class="flex items-center mb-5 space-4" wire:key='uploadimage'>
-                @if ($image)
-                    <div class="pt-5 max-w-40">
-                        <img src="{{ $image->temporaryUrl() }}" alt="Selected Image"
-                            class="max-w-full pr-4 max-h-40" />
-                    </div>
-                @endif
-                <div class="flex flex-col flex-1">
-                    <label class='mb-4 text-sm font-medium text-gray-600 dark:text-white'>
-                        Upload Image (Max: 2MB) <span class="text-red-500">*</span>
-                    </label>
-                    <div class="relative flex items-center justify-center w-full -mt-3 overflow-hidden">
-                        <label for="dropzone-file"
-                            class="flex flex-col items-center justify-center w-full h-40 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                            <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                                <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
-                                </svg>
-                                <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span
-                                        class="font-semibold">Click to upload</span> or drag and drop</p>
-                                <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 2MB)</p>
-
-                            </div>
-                            <input wire:model="image" accept="image/png, image/jpeg, image/gif" id="dropzone-file"
-                                type="file" class="absolute h-[140%] w-[100%]" />
-                        </label>
-                    </div>
-                    <div wire:loading wire:target="image" class="text-blue-700">
-                        <span>
-                            <img class="inline w-6 h-6 text-white me-2 animate-spin" src="{{ asset('assets/images/reload.png') }}" alt="reload-icon">
-                            Uploading...
-                        </span>
-                    </div>
-                    <x-input-error :messages="$errors->get('image')" class="mt-2" />
-                </div>
-            </div> --}}
-            {{-- End Image Upload --}}
         </div>
 
         <div class="mb-5" wire:ignore>
-            <x-input-label for="description" :value="__('Working Hours')" />
+            <x-input-label for="description" :value="__('Description')" />
             <textarea id="description" name="description" wire:model="description"></textarea>
         </div>
-        <div class="mb-5" wire:ignore>
-            <x-input-label for="description_kh" :value="__('Contact')" />
+        {{-- <div class="mb-5" wire:ignore>
+            <x-input-label for="description_kh" :value="__('Description_kh')" />
             <textarea id="description_kh" name="description_kh" wire:model="description_kh"></textarea>
-        </div>
-
+        </div> --}}
         <div>
             @can('update setting')
-            <button wire:click.prevent="save"
-                    wire:target="save"
-                    wire:loading.attr="disabled"
+                <button wire:click.prevent="save" wire:target="save" wire:loading.attr="disabled"
                     class = 'text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'>
 
                     Save Update
-            </button>
+                </button>
             @endcan
 
             <span wire:target="save" wire:loading>
-                <img class="inline w-6 h-6 text-white me-2 animate-spin" src="{{ asset('assets/images/reload.png') }}" alt="reload-icon">
+                <img class="inline w-6 h-6 text-white me-2 animate-spin" src="{{ asset('assets/images/reload.png') }}"
+                    alt="reload-icon">
                 Saving
             </span>
 
@@ -242,11 +142,12 @@
             document.addEventListener('livewire:updated', event => {
                 console.log('updated'); // Logs 'Livewire component updated' to browser console
                 initFlowbite();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
             });
         });
-
-
     </script>
 
     {{-- <script>

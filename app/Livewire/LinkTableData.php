@@ -53,6 +53,7 @@ class LinkTableData extends Component
 
         $items = Link::where(function($query){
                                 $query->where('name', 'LIKE', "%$this->search%")
+                                    ->orWhere('type', 'LIKE', "%$this->search%")
                                     ->orWhere('name_kh', 'LIKE', "%$this->search%");
                             })
 
