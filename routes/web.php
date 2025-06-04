@@ -27,6 +27,7 @@ use App\Http\Controllers\Admin\FeatureController;
 use App\Http\Controllers\Admin\PublisherController;
 
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\ProductCategoryController;
 use App\Models\Book;
 use App\Models\BookImage;
 
@@ -114,7 +115,7 @@ Route::group([
     Route::get('settings/support', [MenuController::class, 'support']);
     Route::resource('settings/features', FeatureController::class);
     Route::resource('settings/links', LinkController::class);
-    Route::resource('settings/databases', DatabaseController::class);
+    // Route::resource('settings/databases', DatabaseController::class);
     Route::resource('settings/website_infos', WebsiteInfoController::class);
 });
 /*
@@ -145,6 +146,7 @@ Route::group([
     Route::resource('admin/orders', OrderController::class);
     Route::get('admin/brands', [BookController::class, 'brands']);
     Route::get('admin/categories', [BookController::class, 'categories']);
+    Route::resource('admin/product_categories', ProductCategoryController::class);
     Route::get('admin/sub_categories', [BookController::class, 'sub_categories']);
 
     Route::resource('admin/people/authors', AuthorController::class);
@@ -220,8 +222,8 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::get('/admin/dashboard', function(){
-   return redirect('/admin/books'); 
+Route::get('/admin/dashboard', function () {
+    return redirect('/admin/books');
 });
 
 // ============================================
