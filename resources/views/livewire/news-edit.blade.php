@@ -301,7 +301,7 @@ End file Upload --}}
 
 <div class="mb-5" wire:ignore>
     <x-input-label for="description" :value="__('Description')" />
-    <textarea id="description" name="description"></textarea>
+    <textarea id="description" name="description">{{ $description }}</textarea>
 </div>
 
 <div>
