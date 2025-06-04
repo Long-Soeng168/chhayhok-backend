@@ -18,6 +18,7 @@ class BookCategoryTableData extends Component
 
 
     public $image;
+    public $banner;
 
 
     #[Url(history: true)]
@@ -74,7 +75,8 @@ class BookCategoryTableData extends Component
         session()->flash('success', 'Category successfully deleted!');
     }
 
-    public function updateStatus($id, $status) {
+    public function updateStatus($id, $status)
+    {
         $category = Category::findOrFail($id);
         $category->update([
             'status' => $status,
@@ -107,13 +109,22 @@ class BookCategoryTableData extends Component
                 $imageUpload = Image::make($this->image->getRealPath())->save($image_path);
                 $validated['image'] = $filename;
             }
+            if (!empty($this->banner)) {
+                // $filename = time() . '_' . $this->banner->getClientOriginalName();
+                $bannerfilename = time() . str()->random(10) . '.' . $this->banner->getClientOriginalExtension();
+
+                $banner_path = public_path('assets/images/categories/' . $bannerfilename);
+                $bannerUpload = Image::make($this->banner->getRealPath())->save($banner_path);
+                $validated['banner'] = $bannerfilename;
+            }
 
             Category::create([
                 'ddc' => $this->newDdc,
                 'name' => $this->newName,
                 'order_index' => $this->newOrderIndex,
-                'name_kh'=> $this->newName_kh,
+                'name_kh' => $this->newName_kh,
                 'image' => $filename ?? '',
+                'banner' => $bannerfilename ?? '',
             ]);
 
             session()->flash('success', 'Add New Category successfully!');
@@ -167,6 +178,15 @@ class BookCategoryTableData extends Component
                 $image_path = public_path('assets/images/categories/' . $filename);
                 $imageUpload = Image::make($this->image->getRealPath())->save($image_path);
                 $validated['image'] = $filename;
+            }
+
+            if (!empty($this->banner)) {
+                // $filename = time() . '_' . $this->banner->getClientOriginalName();
+                $bannerfilename = time() . str()->random(10) . '.' . $this->banner->getClientOriginalExtension();
+
+                $banner_path = public_path('assets/images/categories/' . $bannerfilename);
+                $bannerUpload = Image::make($this->banner->getRealPath())->save($banner_path);
+                $validated['banner'] = $bannerfilename;
             }
 
 
