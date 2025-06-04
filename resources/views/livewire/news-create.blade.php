@@ -108,10 +108,10 @@
                             @endforelse
                         </x-select-option>
                     </div>
-                    <button type="button" data-modal-target="category_modal" data-modal-toggle="category_modal"
+                    <!-- <button type="button" data-modal-target="category_modal" data-modal-toggle="category_modal"
                         class="rounded-md text-sm p-2.5 font-medium text-center text-white bg-blue-700 ">
                         Add
-                    </button>
+                    </button> -->
 
                     <!-- Start Category modal -->
                     <div id="category_modal" tabindex="-1" aria-hidden="true"

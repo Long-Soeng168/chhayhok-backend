@@ -509,12 +509,12 @@
                                     Resources
                                 </a>
                             </li>
-                            <li>
+                            <!-- <li>
                                 <a href="{{ url('admin/bulletins_categories') }}"
                                     class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ request()->is('admin/bulletins_categories') ? 'bg-slate-200 dark:bg-slate-500' : '' }}">
                                     Categories
                                 </a>
-                            </li>
+                            </li> -->
 
 
                         </ul>
