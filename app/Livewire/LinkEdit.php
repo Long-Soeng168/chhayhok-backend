@@ -30,7 +30,7 @@ class LinkEdit extends Component
         $this->name = $item->name;
         $this->name_kh = $item->name_kh;
         $this->link = $item->link;
-        $this->type = $item->type;
+        $this->type = $item->type ?? 'social';
         $this->order_index = $item->order_index;
         $this->link_in_product_detail = $item->link_in_product_detail;
     }
