@@ -123,7 +123,7 @@
                     {{-- <x-table-data value="{{ $item->description }}" /> --}}
                     <x-table-data>
                         <span
-                            class="bg-primary-100 text-primary-800 text-xs font-medium px-2 py-0.5 rounded dark:bg-primary-900 dark:text-primary-300 max-w-[300px]">
+                            class="bg-primary-100 text-primary-800 text-xs font-medium px-2 py-0.5 rounded dark:bg-primary-900 dark:text-primary-300 max-w-[300px] overflow-ellipsis">
                             {{ $item->link }}
                         </span>
                     </x-table-data>
