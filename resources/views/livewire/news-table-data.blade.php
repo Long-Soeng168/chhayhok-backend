@@ -192,9 +192,8 @@
                                     </div>
                                 @endcan -->
 
-                                @can('view bulletin')
+                                <!-- @can('view bulletin')
                                     <div class="pb-1" x-data="{ tooltip: false }">
-                                        <!-- Modal toggle -->
                                         <a href="{{ url('bulletins/' . $item->id) }}" @mouseenter="tooltip = true"
                                             @mouseleave="tooltip = false">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
@@ -206,7 +205,6 @@
                                             </svg>
                                         </a>
 
-                                        <!-- View tooltip -->
                                         <div x-show="tooltip" x-transition:enter="transition ease-out duration-200"
                                             x-transition:enter-start="opacity-0 transform scale-90"
                                             x-transition:enter-end="opacity-100 transform scale-100"
@@ -218,7 +216,7 @@
                                             View
                                         </div>
                                     </div>
-                                @endcan
+                                @endcan -->
 
                                 @can('delete bulletin')
                                     <div class="pb-1" x-data="{ tooltip: false }">

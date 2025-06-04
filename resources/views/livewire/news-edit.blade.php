@@ -101,7 +101,7 @@
                             <option wire:key='category' value="">Select Category...</option>
                             @forelse ($categories as $category)
                                 <option wire:key='{{ $category->id }}' value="{{ $category->id }}">
-                                    {{ $category->name }} {{ ' / ' . $category->name_kh }}
+                                    {{ $category->name }}
                                 </option>
                             @empty
                                 <option wire:key='nocateogry' value=""> --No Category--</option>
@@ -230,7 +230,7 @@
             </div>
             {{-- End Image Upload --}}
 
-            {{-- Start file Upload --}}
+            {{-- Start file Upload 
             <div class="flex items-center space-4" wire:key='uploadfile'
             x-data="{ uploading: false, progress: 0, paused: false }"
             x-on:livewire-upload-start="uploading = true; progress = 0; console.log('started');"
@@ -294,7 +294,7 @@
                     <x-input-error :messages="$errors->get('file')" class="mt-2" />
                 </div>
             </div>
-            {{-- End file Upload --}}
+             End file Upload --}}
 
 
         </div>

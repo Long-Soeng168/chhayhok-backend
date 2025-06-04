@@ -133,7 +133,7 @@
                                         placeholder="Name">
                                 </div>
                             </div>
-                            <div class="grid grid-cols-2 gap-4 mb-4 ">
+                            <!-- <div class="grid grid-cols-2 gap-4 mb-4 ">
                                 <div class="col-span-2">
                                     <label for="name_kh"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name KH</label>
@@ -142,7 +142,7 @@
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                         placeholder="Name KH">
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="text-right">
                                 <button data-modal-target="create_modal" data-modal-toggle="create_modal"
                                     type="button" wire:click='save' wire:target="save"
@@ -199,7 +199,7 @@
                             Name
                         </div>
                     </th>
-                    <th scope="col" class="px-4 py-3">Name KH</th>
+                    <!-- <th scope="col" class="px-4 py-3">Name KH</th> -->
                     <th scope="col" class="px-4 py-3">Created At</th>
                     <th scope="col" class="py-3 text-center w-[300px]">Action</th>
                 </tr>
@@ -217,19 +217,19 @@
                                 <input type="text" wire:model='name'
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[90%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             </td>
-                            <td>
+                            <!-- <td>
                                 <input type="text" wire:model='name_kh'
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[90%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            </td>
+                            </td> -->
                             <td></td>
                         @else
                             <x-table-data value="{{ $item->name }}" />
-                            <x-table-data>
+                            <!-- <x-table-data>
                                 <span
                                     class="bg-primary-100 text-primary-800 text-xs font-medium px-2 py-0.5 rounded dark:bg-primary-900 dark:text-primary-300 whitespace-nowrap">
                                     {{ $item->name_kh ? $item->name_kh : 'N/A' }}
                                 </span>
-                            </x-table-data>
+                            </x-table-data> -->
                             <x-table-data class="capitalize" value="{{ $item->created_at?->format('d-M-Y') }}" />
                         @endif
 

@@ -56,7 +56,7 @@ class NewsCategoryTableData extends Component
 
      // ==========Add New Category============
      public $newName = null;
-     public $newName_kh = null;
+     public $newName_kh = 'n/a';
 
      public function save()
      {
