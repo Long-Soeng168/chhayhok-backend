@@ -44,6 +44,14 @@ class BookCategoryTableData extends Component
 
         session()->flash('success', 'Image successfully uploaded!');
     }
+    public function updatedBanner()
+    {
+        $this->validate([
+            'banner' => 'image|max:2048', // 2MB Max
+        ]);
+
+        session()->flash('success', 'banner successfully uploaded!');
+    }
 
     public function setFilter($value)
     {
