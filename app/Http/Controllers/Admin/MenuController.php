@@ -42,7 +42,15 @@ class MenuController extends Controller
     }
     public function support()
     {
-        $about = Support::first() ?? new Support();
+        $about = Support::first();
+        if(empty($about)){
+            $created = Support::create([
+                'title' => 'Support title',
+                'description' => 'Descrition',
+            ]);
+
+            $about = $created;
+        }
         return view('admin.menus.support', [
             'about' => $about,
         ]);
