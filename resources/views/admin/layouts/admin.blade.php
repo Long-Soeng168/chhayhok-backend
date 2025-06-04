@@ -494,7 +494,7 @@
                             @click="open = !open; if (open) $nextTick(() => $refs.users.scrollIntoView({ behavior: 'smooth' }))">
                             <img src="{{ asset('assets/icons/news.png') }}" alt="icon"
                                 class="object-contain w-8 h-8 bg-white rounded dark:bg-gray-200">
-                            <span class="flex-1 text-left ms-3 rtl:text-right whitespace-nowrap">News (Resources)</span>
+                            <span class="flex-1 text-left ms-3 rtl:text-right whitespace-nowrap">Resources</span>
                             <svg class="w-3 h-3 transition-transform duration-200 transform"
                                 :class="{ 'rotate-180': open }" aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
@@ -506,7 +506,7 @@
                             <li>
                                 <a href="{{ url('admin/bulletins') }}"
                                     class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ request()->is('admin/bulletins') ? 'bg-slate-200 dark:bg-slate-500' : '' }}">
-                                    News
+                                    Resources
                                 </a>
                             </li>
                             <li>

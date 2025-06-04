@@ -164,9 +164,8 @@
 
                         <td class="px-6 py-4">
                             <div class="flex items-start justify-center gap-3">
-                                @can('update bulletin')
+                                <!-- @can('update bulletin')
                                     <div class="pb-1" x-data="{ tooltip: false }">
-                                        <!-- Modal toggle -->
                                         <a href="{{ url('admin/bulletins_images/' . $item->id) }}"
                                             @mouseenter="tooltip = true" @mouseleave="tooltip = false" class="relative">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -177,7 +176,6 @@
                                                 <path d="M8 12h8" />
                                                 <path d="M12 8v8" />
                                             </svg>
-                                            <!-- View tooltip -->
                                             <div x-show="tooltip" x-transition:enter="transition ease-out duration-200"
                                                 x-transition:enter-start="opacity-0 transform scale-90"
                                                 x-transition:enter-end="opacity-100 transform scale-100"
@@ -192,7 +190,7 @@
 
 
                                     </div>
-                                @endcan
+                                @endcan -->
 
                                 @can('view bulletin')
                                     <div class="pb-1" x-data="{ tooltip: false }">
@@ -256,7 +254,6 @@
 
                                 @can('update bulletin')
                                     <div class="pb-1" x-data="{ tooltip: false }">
-                                        <!-- Modal toggle -->
                                         <a href="{{ url('admin/bulletins/' . $item->id . '/edit') }}"
                                             @mouseenter="tooltip = true" @mouseleave="tooltip = false">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
@@ -268,7 +265,6 @@
                                                 <path d="M18.4 9.6a2 2 0 1 1 3 3L17 17l-4 1 1-4Z" />
                                             </svg>
                                         </a>
-                                        <!-- View tooltip -->
                                         <div x-show="tooltip" x-transition:enter="transition ease-out duration-200"
                                             x-transition:enter-start="opacity-0 transform scale-90"
                                             x-transition:enter-end="opacity-100 transform scale-100"
