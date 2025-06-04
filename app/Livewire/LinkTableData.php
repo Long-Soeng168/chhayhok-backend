@@ -16,7 +16,7 @@ class LinkTableData extends Component
     public $search = '';
 
     #[Url(history: true)]
-    public $perPage = 10;
+    public $perPage = 20;
 
     #[Url(history: true)]
     public $sortBy = 'order_index';
