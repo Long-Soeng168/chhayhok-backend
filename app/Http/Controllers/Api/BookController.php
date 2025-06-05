@@ -26,6 +26,7 @@ class BookController extends Controller
         $publisherId = $request->publisherId;
         $subCategoryId = $request->subCategoryId;
         $randomOrder = $request->randomOrder ?? 0;
+        $specialOffer = $request->specialOffer ?? 0;
         $orderBy = $request->orderBy ?? 'id';
         $orderDir = strtolower($request->orderDir) === 'asc' ? 'asc' : 'desc'; // Ensure 'asc' or 'desc'
 
@@ -82,6 +83,9 @@ class BookController extends Controller
             $query->orderBy($orderBy, $orderDir);
         }
 
+        if ($specialOffer) {
+            $query->where('discount', '>', 0);
+        }
         // Paginate results with the specified number per page
         $books = $query->where('status', 1)->paginate($perPage);
 
