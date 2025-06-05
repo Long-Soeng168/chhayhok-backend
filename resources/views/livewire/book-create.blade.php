@@ -80,6 +80,12 @@
                             placeholder="Key Specifications">{{ $short_description }}</textarea>
                         <x-input-error :messages="$errors->get('short_description')" class="mt-2" />
                     </div>
+                    <div class="md:col-span-2">
+                        <x-input-label for="format" :value="__('Colors')" /><span class="text-red-400">*</span>
+                        <x-text-input wire:model='format' id="title" class="block w-full mt-1" type="text"
+                            name="format" placeholder="Product Colors" :value="old('format')" autocomplete="format" />
+                        <x-input-error :messages="$errors->get('format')" class="mt-2" />
+                    </div>
                     <div class="">
                         <x-input-label for="price" :value="__('messages.price') . ' ($)'" /><span class="text-red-400">*</span>
                         <x-text-input wire:model='price' id="price" class="block w-full mt-1" type="number"
