@@ -31,11 +31,7 @@ class CategoryController extends Controller
                         $bookQuery->limit(10); // Optional: Limit books per sub-category
                     }])->where('status', 1);
             }]);
-        } else if ($withSub == 2) {
-            $query->with(['subCategories' => function ($subQuery) {
-                $subQuery->withCount('books')->where('status', 1);
-            }]);
-        }
+        } 
 
         // Apply limit if provided
         if ($limit) {
@@ -46,6 +42,41 @@ class CategoryController extends Controller
 
         return response()->json($categories);
     }
+    // public function index(Request $request)
+    // {
+    //     $limit = $request->input('limit');
+    //     $withSub = $request->input('withSub', 0);
+    //     $orderBy = $request->input('orderBy', 'order_index');
+    //     $orderDir = strtolower($request->input('orderDir', 'asc')) === 'desc' ? 'desc' : 'asc'; // Ensure 'asc' or 'desc'
+
+    //     // Base query for book categories
+    //     $query = BookCategory::query()
+    //         ->orderBy($orderBy, $orderDir)
+    //         ->withCount('books'); // Get the total count of books for each category
+
+    //     // Conditionally load sub-categories and books
+    //     if ($withSub == 1) {
+    //         $query->with(['subCategories' => function ($subQuery) {
+    //             $subQuery->withCount('books') // Count books in each sub-category
+    //                 ->with(['books' => function ($bookQuery) {
+    //                     $bookQuery->limit(10); // Optional: Limit books per sub-category
+    //                 }])->where('status', 1);
+    //         }]);
+    //     } else if ($withSub == 2) {
+    //         $query->with(['subCategories' => function ($subQuery) {
+    //             $subQuery->withCount('books')->where('status', 1);
+    //         }]);
+    //     }
+
+    //     // Apply limit if provided
+    //     if ($limit) {
+    //         $query->limit($limit);
+    //     }
+
+    //     $categories = $query->where('status', 1)->get();
+
+    //     return response()->json($categories);
+    // }
 
 
     public function getCategoryWithMostBooks()
