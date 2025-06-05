@@ -13,7 +13,7 @@ class LinkController extends Controller
      */
     public function index()
     {
-        $links = Link::orderBy("order_index","desc")->get();
+        $links = Link::orderBy("order_index")->get();
 
         return response()->json($links);
     }
