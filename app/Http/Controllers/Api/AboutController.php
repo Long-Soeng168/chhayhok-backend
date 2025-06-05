@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\About;
+use App\Models\Support;
 
 class AboutController extends Controller
 {
@@ -16,6 +17,12 @@ class AboutController extends Controller
         $about = About::first();
 
         return response()->json($about);
+    }
+    public function support(Request $request)
+    {
+        $support = Support::first();
+
+        return response()->json($support);
     }
 
 

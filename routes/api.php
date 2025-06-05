@@ -78,6 +78,7 @@ Route::get('promotions', [PromotionController::class, 'index']);
 Route::get('features', [FeatureController::class, 'index']);
 Route::get('contact', [ContactController::class, 'index']);
 Route::get('about', [AboutController::class, 'index']);
+Route::get('support', [AboutController::class, 'support']);
 Route::get('books', [BookController::class, 'index']);
 Route::get('products', [BookController::class, 'index']);
 Route::get('books/{id}', [BookController::class, 'show']);
