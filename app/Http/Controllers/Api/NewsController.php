@@ -14,9 +14,11 @@ class NewsController extends Controller
      */
     public function index(Request $request)
     {
-        $perPage = $request->perPage ?? 12;
+        $perPage = $request->perPage ?? 40;
         $search = $request->search;
         $categoryId = $request->categoryId;
+        $subCategoryId = $request->subCategoryId;
+        $randomOrder = $request->randomOrder ?? 0;
         $orderBy = $request->orderBy ?? 'id';
         $orderDir = strtolower($request->orderDir) === 'asc' ? 'asc' : 'desc'; // Ensure 'asc' or 'desc'
 
@@ -25,7 +27,7 @@ class NewsController extends Controller
         if ($search) {
             $query->where(function ($sub_query) use ($search) {
                 $sub_query->where('name', 'LIKE', '%' . $search . '%')
-                        ->orWhere('description', 'LIKE', '%' . $search . '%');
+                    ->orWhere('description', 'LIKE', '%' . $search . '%');
             });
         }
 
@@ -33,13 +35,19 @@ class NewsController extends Controller
             $query->where('news_category_id', $categoryId);
         }
 
-        // Apply ordering
-        $query->orderBy($orderBy, $orderDir);
+        if ($subCategoryId) {
+            $query->where('news_sub_category_id', $subCategoryId);
+        }
 
+        if ($randomOrder == 1) {
+            $query->inRandomOrder();
+        } else {
+            $query->orderBy($orderBy, $orderDir);
+        }
         // Paginate results with the specified number per page
-        $news = $query->paginate($perPage);
+        $items = $query->where('status', 1)->paginate($perPage);
 
-        return response()->json($news);
+        return response()->json($items);
     }
 
 
