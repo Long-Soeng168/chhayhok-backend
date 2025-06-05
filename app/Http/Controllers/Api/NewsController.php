@@ -44,6 +44,7 @@ class NewsController extends Controller
         } else {
             $query->orderBy($orderBy, $orderDir);
         }
+        $query->with('category');
         // Paginate results with the specified number per page
         $items = $query->where('status', 1)->paginate($perPage);
 
