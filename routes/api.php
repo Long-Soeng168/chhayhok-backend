@@ -61,7 +61,7 @@ Route::get('/sent_to_telegram', function (Request $request) {
     return response()->json(['message' => 'success'], 200);
 });
 
-Route::post('/sent_message_to_telegram', function (Request $request) {
+Route::get('/sent_message_to_telegram', function (Request $request) {
     $validated = $request->validate([
         'full_name'     => 'required|string',
         'company_name'  => 'nullable|string',
