@@ -41,14 +41,14 @@ class NewsController extends Controller
         }
         if ($type == 'Article') {
             $query->whereHas('category', function ($q) {
-                $q->where('name', '%Article%'); // example filter on category's 'name'
+                $q->where('name', 'Article'); // example filter on category's 'name'
             });
         } elseif ($type == 'Video') {
             $query->whereHas('category', function ($q) {
-                $q->where('name', '%Video%'); // example filter on category's 'name'
+                $q->where('name', 'Video'); // example filter on category's 'name'
             });
         }
-        
+
         if ($randomOrder == 1) {
             $query->inRandomOrder();
         } else {
