@@ -20,6 +20,7 @@ class NewsController extends Controller
         $subCategoryId = $request->subCategoryId;
         $randomOrder = $request->randomOrder ?? 0;
         $orderBy = $request->orderBy ?? 'id';
+        $type = $request->type ?? 'all';
         $orderDir = strtolower($request->orderDir) === 'asc' ? 'asc' : 'desc'; // Ensure 'asc' or 'desc'
 
         $query = News::query();
@@ -38,7 +39,16 @@ class NewsController extends Controller
         if ($subCategoryId) {
             $query->where('news_sub_category_id', $subCategoryId);
         }
-
+        if ($type == 'Article') {
+            $query->whereHas('category', function ($q) {
+                $q->where('name', '%Article%'); // example filter on category's 'name'
+            });
+        } elseif ($type == 'Video') {
+            $query->whereHas('category', function ($q) {
+                $q->where('name', '%Video%'); // example filter on category's 'name'
+            });
+        }
+        
         if ($randomOrder == 1) {
             $query->inRandomOrder();
         } else {
