@@ -72,6 +72,8 @@ Route::get('/sent_message_to_telegram', function (Request $request) {
         'inquiry'       => 'required|string',
     ]);
 
+    return response()->json($validated);
+
     try {
         Notification::route('telegram', '-4664327715')
             ->notify(new ContactFormTelegramNotification($validated));
