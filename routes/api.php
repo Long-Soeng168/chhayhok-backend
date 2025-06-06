@@ -26,6 +26,7 @@ use App\Http\Controllers\Api\AboutController;
 
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\InvoiceController;
+use App\Notifications\ContactFormTelegramNotification;
 
 Route::post('/orders', [OrderController::class, 'store']);
 
@@ -41,8 +42,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::group([
     'middleware' => 'auth:sanctum'
-], function () {
-});
+], function () {});
 
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\MyTelegramBotNotification;
@@ -58,6 +58,30 @@ Route::get('/sent_to_telegram', function (Request $request) {
         // return 'Error Sent notification to telegram';
         return response()->json(['message' => 'unsuccess', 'error' => 'Error Sent notification to telegram' . $e], 500);
     }
+    return response()->json(['message' => 'success'], 200);
+});
+
+Route::post('/sent_message_to_telegram', function (Request $request) {
+    $validated = $request->validate([
+        'full_name'     => 'required|string',
+        'company_name'  => 'nullable|string',
+        'telephone'     => 'required|string',
+        'email'         => 'required|email',
+        'address'       => 'required|string',
+        'subject'       => 'required|string',
+        'inquiry'       => 'required|string',
+    ]);
+
+    try {
+        Notification::route('telegram', '-4664327715')
+            ->notify(new ContactFormTelegramNotification($validated));
+    } catch (\Exception $e) {
+        return response()->json([
+            'message' => 'unsuccess',
+            'error'   => 'Error sending notification to Telegram: ' . $e->getMessage(),
+        ], 500);
+    }
+
     return response()->json(['message' => 'success'], 200);
 });
 
