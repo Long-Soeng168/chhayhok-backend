@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Notification;
 use NotificationChannels\Telegram\TelegramMessage;
 
-class ContactFormTelegramNotification extends Notification
+class MyTelegramBotMessageNotification extends Notification
 {
     use Queueable;
 

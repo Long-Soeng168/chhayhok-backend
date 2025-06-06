@@ -26,7 +26,7 @@ use App\Http\Controllers\Api\AboutController;
 
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\InvoiceController;
-use App\Notifications\ContactFormTelegramNotification;
+use App\Notifications\MyTelegramBotMessageNotification;
 
 Route::post('/orders', [OrderController::class, 'store']);
 
@@ -76,7 +76,7 @@ Route::get('/sent_message_to_telegram', function (Request $request) {
 
     try {
         Notification::route('telegram', '-4664327715')
-            ->notify(new ContactFormTelegramNotification($validated));
+            ->notify(new MyTelegramBotMessageNotification($validated));
     } catch (\Exception $e) {
         return response()->json([
             'message' => 'unsuccess',
